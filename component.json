@@ -1,0 +1,22 @@
+{
+  "title": "OData",
+  "description" : "Generic OData Connector",
+  "credentials": {
+    "fields": {
+      "user": {
+        "viewClass": "TextFieldWithNoteView",
+        "label": "Username",
+        "required": true,
+        "placeholder": "Your account username",
+        "note": "This username will be used for HTTP Basic authentication"
+      },
+      "password" : {
+        "viewClass": "TextFieldWithNoteView",
+        "label": "Password",
+        "required": true,
+        "placeholder": "Your account password",
+        "note": "This password will be used for HTTP Basic authentication"
+      }
+    }
+  }
+}
