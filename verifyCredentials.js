@@ -1,10 +1,10 @@
 'use strict';
 
-const BaseClient = require('./lib/restClient');
+const ODataClient = require('./lib/oDataClient');
 
 module.exports = async function (cfg) {
   try {
-    const instance = new BaseClient(this, cfg);
+    const instance = new ODataClient(this, cfg);
     // Fetch service document
     await instance.makeRequest('', 'GET');
     console.log('Successfully verified credentials.');
