@@ -1,24 +1,51 @@
 {
-  "name": "odata-connector",
-  "version": "0.0.1",
-  "description": "OData Connector for elastic.io platform",
-  "main": "index.js",
-  "scripts": {
-    "test": "exit 0;"
+  "name": "OData-with-OAuth-component",
+  "version": "1.0.0",
+  "description": "A component designed to work with generic OData services that connect to APIs which authenticate with 3 legged OAuth",
+  "homepage": "TODO",
+  "author": {
+    "name": "Elastic.io GmbH",
+    "email": "dev@elastic.io",
+    "url": "elastic.io"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/elasticio/odata-connector.git"
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "pretest": "eslint verifyCredentials.js lib spec-integration --fix",
+    "test": "echo 'Currently, there are no unit tests.  Run \"npm run integration-test\" to run integration tests.'",
+    "integration-test": "mocha spec-integration"
+  },
+  "engines": {
+    "node": "8"
   },
   "keywords": [
-    "odata",
-    "elasticio",
-    "elastic.io"
+    "OData",
+    "elasticio-component",
+    "OAuth",
+    "Connector"
   ],
-  "author": "Renat Zubairov",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/elasticio/odata-connector/issues"
+  "dependencies": {
+    "elasticio-node": "0.0.8",
+    "elasticio-sailor-nodejs": "^2.2.1",
+    "request": "^2.83.0"
   },
-  "homepage": "https://github.com/elasticio/odata-connector#readme"
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.12.1",
+    "eslint-config-sinon": "^1.0.3",
+    "eslint-config-xo-space": "^0.17.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "mocha": "^4.0.1",
+    "sinon": "^4.1.2"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "repository": "TODO",
+  "license": "Apache-2.0"
 }

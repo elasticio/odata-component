@@ -1,21 +1,61 @@
 {
-  "title": "OData",
-  "description" : "Generic OData Connector",
-  "credentials": {
+  "title": "OData with OAuth",
+  "description": "A component designed to work with generic OData services that connect to APIs which authenticate with 3 legged OAuth",
+  "credentials" : {
     "fields": {
-      "user": {
-        "viewClass": "TextFieldWithNoteView",
-        "label": "Username",
-        "required": true,
-        "placeholder": "Your account username",
-        "note": "This username will be used for HTTP Basic authentication"
+      "resourceServerUrl": {
+        "viewClass": "TextFieldView",
+        "label": "Url to the Resource Server's OData Context URL",
+        "required": true
       },
-      "password" : {
-        "viewClass": "TextFieldWithNoteView",
-        "label": "Password",
-        "required": true,
-        "placeholder": "Your account password",
-        "note": "This password will be used for HTTP Basic authentication"
+      "oauth2_field_client_id": {
+        "viewClass": "TextFieldView",
+        "label": "Client Id",
+        "required": true
+      },
+      "oauth2_field_client_secret": {
+        "viewClass": "PasswordFieldView",
+        "label": "Client Secret",
+        "required": true
+      },
+      "oauth": {
+        "viewClass": "OAuthFieldView",
+        "label": "TODO",
+        "required": true
+      },
+      "authorizationServerTokenEndpointUrl": {
+        "viewClass": "TextFieldView",
+        "label": "Authorization Server Token Endpoint Url",
+        "required": true
+      },
+      "authorizationServerAuthorizationEndpointUrl": {
+        "viewClass": "TextFieldView",
+        "label": "Authorization Server Authorization Endpoint Url",
+        "required": true
+      }
+    },
+    "oauth2": {
+      "auth_uri": "{{authorizationServerAuthorizationEndpointUrl}}",
+      "token_uri": "{{authorizationServerTokenEndpointUrl}}"
+    }
+  },
+  "triggers": {
+    "getObjectsPolling": {
+      "main": "./lib/triggers/getObjectsPolling.js",
+      "type": "polling",
+      "title": "Fetch new and updated objects (getObjects - Polling)",
+      "description": "Get objects which have recently been modified or created",
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      },
+      "metadata": {
+        "out": {}
       }
     }
   }
