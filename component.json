@@ -1,6 +1,6 @@
 {
-  "title": "OData with OAuth",
-  "description": "A component designed to work with generic OData services that connect to APIs which authenticate with 3 legged OAuth",
+  "title": "OData",
+  "description": "A component designed to work with OData services.",
   "credentials": {
     "fields": {
       "auth": {
