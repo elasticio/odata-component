@@ -1,6 +1,6 @@
 'use strict';
 
-const ODataClient = require('./lib/oDataClient');
+const ODataClient = require('./lib/genericODataClient');
 
 module.exports = async function (cfg) {
   try {
