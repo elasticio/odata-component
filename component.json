@@ -1,42 +1,18 @@
 {
-  "title": "OData with OAuth",
-  "description": "A component designed to work with generic OData services that connect to APIs which authenticate with 3 legged OAuth",
-  "credentials" : {
+  "title": "OData",
+  "description": "A component designed to work with OData services.",
+  "credentials": {
     "fields": {
+      "auth": {
+        "required": false,
+        "viewClass": "HTTPAuthView"
+      },
       "resourceServerUrl": {
         "viewClass": "TextFieldView",
-        "label": "Url to the Resource Server's OData Context URL",
-        "required": true
-      },
-      "oauth2_field_client_id": {
-        "viewClass": "TextFieldView",
-        "label": "Client Id",
-        "required": true
-      },
-      "oauth2_field_client_secret": {
-        "viewClass": "PasswordFieldView",
-        "label": "Client Secret",
-        "required": true
-      },
-      "oauth": {
-        "viewClass": "OAuthFieldView",
-        "label": "TODO",
-        "required": true
-      },
-      "authorizationServerTokenEndpointUrl": {
-        "viewClass": "TextFieldView",
-        "label": "Authorization Server Token Endpoint Url",
-        "required": true
-      },
-      "authorizationServerAuthorizationEndpointUrl": {
-        "viewClass": "TextFieldView",
-        "label": "Authorization Server Authorization Endpoint Url",
-        "required": true
+        "label": "The URL of the OData service to consume",
+        "required": true,
+        "placeholder": "https://example.com/odataService"
       }
-    },
-    "oauth2": {
-      "auth_uri": "{{authorizationServerAuthorizationEndpointUrl}}",
-      "token_uri": "{{authorizationServerTokenEndpointUrl}}"
     }
   },
   "triggers": {
@@ -57,6 +33,66 @@
       "metadata": {
         "out": {}
       }
+    }
+  },
+  "actions": {
+    "upsertObject": {
+      "main": "./lib/actions/upsertObject.js",
+      "title": "Upsert Entry",
+      "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+      "dynamicMetadata": true,
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      }
+    },
+    "lookupObjectByFields": {
+      "main": "./lib/actions/lookupObjectByFields.js",
+      "title": "Lookup Object By Field",
+      "description": "Given a set of criteria which matches exactly one record, find that matching record.",
+      "fields": {
+        "objectType": {
+          "label": "Object Type to Fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        },
+        "fieldName": {
+          "label": "Name of Field to Match",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getFieldsForObject",
+          "prompt": "Select a Field"
+        },
+        "allowEmptyCriteria": {
+          "label": "Allow Empty Criteria",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          },
+          "note": "Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?"
+        },
+        "castToString": {
+          "label": "Cast Field To String",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          }
+        }
+      },
+      "dynamicMetadata": true
     }
   }
 }

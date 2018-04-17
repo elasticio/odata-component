@@ -1,19 +1,20 @@
 {
-  "name": "OData-with-OAuth-component",
-  "version": "1.0.0",
-  "description": "A component designed to work with generic OData services that connect to APIs which authenticate with 3 legged OAuth",
-  "homepage": "TODO",
+  "name": "odata-component",
+  "version": "2.0.0",
+  "description": "A component designed to work with generic OData services.",
+  "homepage": "https://elastic.io",
   "author": {
     "name": "Elastic.io GmbH",
-    "email": "dev@elastic.io",
-    "url": "elastic.io"
+    "email": "ps@elastic.io",
+    "url": "https://elastic.io"
   },
+  "main": "module.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "pretest": "eslint verifyCredentials.js lib spec-integration --fix",
-    "test": "echo 'Currently, there are no unit tests.  Run \"npm run integration-test\" to run integration tests.'",
+    "pretest": "echo 'nsp check' && eslint verifyCredentials.js module.js lib spec-integration --fix",
+    "test": "echo 'No unit tests! Run \"npm run integration-test\" to run integration tests.'",
     "integration-test": "mocha spec-integration"
   },
   "engines": {
@@ -22,30 +23,44 @@
   "keywords": [
     "OData",
     "elasticio-component",
-    "OAuth",
     "Connector"
   ],
   "dependencies": {
     "elasticio-node": "0.0.8",
-    "elasticio-sailor-nodejs": "^2.2.1",
-    "request": "^2.83.0"
+    "elasticio-sailor-nodejs": "2.2.1",
+    "json-schema-generator": "2.0.6",
+    "remove-leading-slash": "1.0.1",
+    "remove-trailing-slash": "0.1.0",
+    "request": "2.85.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "dotenv": "^4.0.0",
-    "eslint": "^4.12.1",
-    "eslint-config-sinon": "^1.0.3",
-    "eslint-config-xo-space": "^0.17.0",
-    "eslint-plugin-mocha": "^4.11.0",
-    "mocha": "^4.0.1",
-    "sinon": "^4.1.2"
+    "chai": "4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "dotenv": "4.0.0",
+    "eslint": "4.12.1",
+    "eslint-config-sinon": "1.0.3",
+    "eslint-plugin-mocha": "4.11.0",
+    "eslint-plugin-node": "6.0.1",
+    "mocha": "4.0.1",
+    "nsp": "^3.2.1",
+    "sinon": "4.1.2"
   },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended"
+    ],
+    "plugins": [
+      "node"
+    ],
     "env": {
-      "mocha": true
+      "mocha": true,
+      "node": true
+    },
+    "rules": {
+      "no-console": "off"
     }
   },
-  "repository": "TODO",
+  "repository": "https://github.com/elasticio/odata-component/",
   "license": "Apache-2.0"
 }
