@@ -23,7 +23,7 @@
       "description": "Get objects which have recently been modified or created",
       "fields": {
         "objectType": {
-          "label": "Object type to export",
+          "label": "Object type to fetch",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
@@ -41,7 +41,7 @@
       "description": "Export all available objects of specific type available at the time of execution",
       "fields": {
         "objectType": {
-          "label": "Object type to fetch",
+          "label": "Object type to export",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
