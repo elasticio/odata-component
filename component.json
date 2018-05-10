@@ -23,7 +23,7 @@
       "description": "Get objects which have recently been modified or created",
       "fields": {
         "objectType": {
-          "label": "Object type to fetch",
+          "label": "Object type to export",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
