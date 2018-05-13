@@ -1,13 +1,7 @@
 {
-  "name": "odata-component",
+  "name": "priority-component",
   "version": "2.0.0",
-  "description": "A component designed to work with generic OData services.",
-  "homepage": "https://elastic.io",
-  "author": {
-    "name": "Elastic.io GmbH",
-    "email": "ps@elastic.io",
-    "url": "https://elastic.io"
-  },
+  "description": "A component designed to work with Priority ERP.",
   "main": "module.js",
   "files": [
     "lib"
@@ -61,6 +55,5 @@
       "no-console": "off"
     }
   },
-  "repository": "https://github.com/elasticio/odata-component/",
   "license": "Apache-2.0"
 }

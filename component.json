@@ -1,6 +1,6 @@
 {
-  "title": "OData",
-  "description": "A component designed to work with OData services.",
+  "title": "Priority",
+  "description": "A component designed to work with Priority.",
   "credentials": {
     "fields": {
       "auth": {
