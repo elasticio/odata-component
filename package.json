@@ -31,12 +31,12 @@
     "json-schema-generator": "2.0.6",
     "remove-leading-slash": "1.0.1",
     "remove-trailing-slash": "0.1.0",
-    "request": "2.85.0"
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "chai-as-promised": "^7.1.1",
-    "dotenv": "4.0.0",
+    "dotenv": "^4.0.0",
     "eslint": "4.12.1",
     "eslint-config-sinon": "1.0.3",
     "eslint-plugin-mocha": "4.11.0",

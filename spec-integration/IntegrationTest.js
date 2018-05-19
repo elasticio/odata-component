@@ -12,6 +12,8 @@ const sinon = require('sinon');
 
 const upsertObject = require('../lib/actions/upsertObject');
 const lookupObject = require('../lib/actions/lookupObjectByFields');
+const deleteObj = require('../lib/actions/deleteObject');
+
 const getObjectsPolling = require('../lib/triggers/getObjectsPolling');
 const verifyCredentials = require('../verifyCredentials');
 
@@ -77,6 +79,13 @@ describe('Integration Test', function () {
     it('Build In Metadata', async function () {
       cfg.objectType = 'People';
       await upsertObject.getMetaModel(cfg);
+    });
+  });
+
+  describe('Delete Tests', function () {
+    it('Build In Metadata', async function () {
+      
+      await deleteObj.deleteObject(cfg);
     });
   });
 
