@@ -61,7 +61,7 @@
           "label": "Delete object",
           "required": true,
           "viewClass": "SelectView",
-          "model": "getObjects",
+          "model": "deleteModel",
           "prompt": "Select an object"
         }
       }
