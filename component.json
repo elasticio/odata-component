@@ -55,7 +55,7 @@
       "main": "./lib/actions/deleteObject.js",
       "title": "Delete Object",
       "description": "Delete O data object",
-      "dynamicMetadata": true,
+      "dynamicMetadata": false,
       "fields": {
         "objectType": {
           "label": "Delete object",
