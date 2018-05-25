@@ -1,5 +1,5 @@
 {
-  "title": "OData",
+  "title": "Ankit OData",
   "description": "A component designed to work with OData services.",
   "credentials": {
     "fields": {
@@ -47,6 +47,21 @@
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      }
+    },
+    "deleteObject": {
+      "main": "./lib/actions/deleteObject.js",
+      "title": "Delete Object",
+      "description": "Delete O data object",
+      "dynamicMetadata": false,
+      "fields": {
+        "objectType": {
+          "label": "Delete object",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "deleteModel",
           "prompt": "Select an object"
         }
       }
