@@ -1,0 +1,141 @@
+{
+  "title": "ODATA COMPONENT",
+  "description": "A component designed to work with OData services.",
+  "credentials": {
+    "fields": {
+      "auth": {
+        "required": false,
+        "viewClass": "HTTPAuthView"
+      },
+      "resourceServerUrl": {
+        "viewClass": "TextFieldView",
+        "label": "The URL of the OData service to consume",
+        "required": true,
+        "placeholder": "https://example.com/odataService"
+      }
+    }
+  },
+  "triggers": {
+    "getObjectsPolling": {
+      "main": "./lib/triggers/getObjectsPolling.js",
+      "type": "polling",
+      "title": "Fetch new and updated objects (getObjects - Polling)",
+      "description": "Get objects which have recently been modified or created",
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      },
+      "metadata": {
+        "out": {}
+      }
+    }
+  },
+  "actions": {
+    "upsertObject": {
+      "main": "./lib/actions/upsertObject.js",
+      "title": "Upsert Entry",
+      "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+      "dynamicMetadata": true,
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      }
+    },
+    "deleteObject": {
+      "main": "./lib/actions/lookupObjectByFields.js",
+      "title": "Lookup Object By Field",
+      "description": "Given a set of criteria which matches exactly one record, find that matching record.",
+      "fields": {
+        "objectType": {
+          "label": "Object Type to Fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        },
+        "fieldName": {
+          "label": "Name of Field to Match",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getFieldsForObject",
+          "prompt": "Select a Field"
+        },
+        "allowEmptyCriteria": {
+          "label": "Allow Empty Criteria",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          },
+          "note": "Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?"
+        },
+        "castToString": {
+          "label": "Cast Field To String",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          }
+        }
+      },
+      "dynamicMetadata": true
+    },
+    "lookupObjectByFields": {
+      "main": "./lib/actions/lookupObjectByFields.js",
+      "title": "Lookup Object By Field",
+      "description": "Given a set of criteria which matches exactly one record, find that matching record.",
+      "fields": {
+        "objectType": {
+          "label": "Object Type to Fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        },
+        "fieldName": {
+          "label": "Name of Field to Match",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getFieldsForObject",
+          "prompt": "Select a Field"
+        },
+        "allowEmptyCriteria": {
+          "label": "Allow Empty Criteria",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          },
+          "note": "Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?"
+        },
+        "castToString": {
+          "label": "Cast Field To String",
+          "required": true,
+          "viewClass": "SelectView",
+          "prompt": "Select a value",
+          "model": {
+            "true": "Yes",
+            "false": "No"
+          }
+        }
+      },
+      "dynamicMetadata": true
+    }
+  }
+}
