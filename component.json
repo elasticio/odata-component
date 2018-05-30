@@ -1,5 +1,5 @@
 {
-  "title": "OData",
+  "title": "Test OData",
   "description": "A component designed to work with OData services.",
   "credentials": {
     "fields": {
@@ -40,6 +40,21 @@
       "main": "./lib/actions/upsertObject.js",
       "title": "Upsert Entry",
       "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+      "dynamicMetadata": true,
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      }
+    },
+    "deleteObject": {
+      "main": "./lib/actions/deleteObject.js",
+      "title": "Delete Object",
+      "description": "delete selected object data",
       "dynamicMetadata": true,
       "fields": {
         "objectType": {
