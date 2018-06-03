@@ -51,6 +51,21 @@
         }
       }
     },
+    "deleteObject": {
+      "main": "./lib/actions/deleteObject.js",
+      "title": "Delete Object",
+      "description": "Delete the object with the corresponding id.",
+      "dynamicMetadata": true,
+      "fields": {
+        "objectType": {
+          "label": "Object type to delete",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      }
+    },
     "lookupObjectByFields": {
       "main": "./lib/actions/lookupObjectByFields.js",
       "title": "Lookup Object By Field",
