@@ -1,5 +1,5 @@
 {
-  "title": "Test OData",
+  "title": "OData",
   "description": "A component designed to work with OData services.",
   "credentials": {
     "fields": {
@@ -54,11 +54,11 @@
     "deleteObject": {
       "main": "./lib/actions/deleteObject.js",
       "title": "Delete Object",
-      "description": "delete selected object data",
+      "description": "Delete the object with the corresponding id.",
       "dynamicMetadata": true,
       "fields": {
         "objectType": {
-          "label": "Object type to fetch",
+          "label": "Object type to delete",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
