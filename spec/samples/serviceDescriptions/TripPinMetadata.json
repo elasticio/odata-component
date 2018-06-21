@@ -1,0 +1,821 @@
+{
+  "entitySets": [
+    {
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "name": "Photos",
+      "entityType": {
+        "name": "Photo",
+        "properties": [
+          {
+            "required": true,
+            "name": "Id",
+            "type": "Edm.Int64"
+          },
+          {
+            "required": false,
+            "name": "Name",
+            "type": "Edm.String"
+          }
+        ],
+        "paths": [],
+        "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+        "key": [
+          {
+            "required": true,
+            "name": "Id",
+            "type": "Edm.Int64"
+          }
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "name": "People",
+      "entityType": {
+        "name": "Person",
+        "properties": [
+          {
+            "required": true,
+            "name": "UserName",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "FirstName",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "LastName",
+            "type": "Edm.String"
+          },
+          {
+            "required": false,
+            "name": "Emails",
+            "type": "Collection(Edm.String)"
+          },
+          {
+            "required": false,
+            "name": "AddressInfo",
+            "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Location)"
+          },
+          {
+            "required": false,
+            "name": "Gender",
+            "type": "Microsoft.OData.SampleService.Models.TripPin.PersonGender"
+          },
+          {
+            "required": true,
+            "name": "Concurrency",
+            "type": "Edm.Int64"
+          },
+          {
+            "name": "Friends",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          },
+          {
+            "name": "Trips",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          },
+          {
+            "name": "Photo",
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo",
+            "x-ref": {
+              "name": "Photo",
+              "constraints": []
+            }
+          }
+        ],
+        "paths": [
+          {
+            "name": "Trips",
+            "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Trip)"
+          }
+        ],
+        "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+        "key": [
+          {
+            "required": true,
+            "name": "UserName",
+            "type": "Edm.String"
+          }
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "name": "Airlines",
+      "entityType": {
+        "name": "Airline",
+        "properties": [
+          {
+            "required": true,
+            "name": "AirlineCode",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "Name",
+            "type": "Edm.String"
+          }
+        ],
+        "paths": [],
+        "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+        "key": [
+          {
+            "required": true,
+            "name": "AirlineCode",
+            "type": "Edm.String"
+          }
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "name": "Airports",
+      "entityType": {
+        "name": "Airport",
+        "properties": [
+          {
+            "required": true,
+            "name": "IcaoCode",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "Name",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "IataCode",
+            "type": "Edm.String"
+          },
+          {
+            "required": true,
+            "name": "Location",
+            "type": "Microsoft.OData.SampleService.Models.TripPin.AirportLocation"
+          }
+        ],
+        "paths": [],
+        "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+        "key": [
+          {
+            "required": true,
+            "name": "IcaoCode",
+            "type": "Edm.String"
+          }
+        ]
+      },
+      "annotations": []
+    }
+  ],
+  "version": "4.0",
+  "complexTypes": [
+    {
+      "name": "City",
+      "properties": [
+        {
+          "required": true,
+          "name": "CountryRegion",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Name",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Region",
+          "type": "Edm.String"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin"
+    },
+    {
+      "name": "Location",
+      "properties": [
+        {
+          "required": true,
+          "name": "Address",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "City",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.City"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin"
+    },
+    {
+      "name": "EventLocation",
+      "properties": [
+        {
+          "required": false,
+          "name": "BuildingInfo",
+          "type": "Edm.String"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin"
+    },
+    {
+      "name": "AirportLocation",
+      "properties": [
+        {
+          "required": true,
+          "name": "Loc",
+          "type": "Edm.GeographyPoint"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin"
+    }
+  ],
+  "singletons": [
+    {
+      "name": "Me",
+      "type": "Microsoft.OData.SampleService.Models.TripPin.Person",
+      "properties": [
+        {
+          "name": "Friends",
+          "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Person)"
+        },
+        {
+          "name": "Airline",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Airline"
+        },
+        {
+          "name": "From",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Airport"
+        },
+        {
+          "name": "To",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Airport"
+        },
+        {
+          "name": "Photo",
+          "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Photo)"
+        },
+        {
+          "name": "Photos",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Photo"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "ResetDataSource",
+      "returnType": null,
+      "parameters": []
+    },
+    {
+      "name": "ShareTrip",
+      "isBound": "true",
+      "returnType": null,
+      "parameters": [
+        {
+          "name": "person",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "nullable": false
+        },
+        {
+          "name": "userName",
+          "type": "Edm.String",
+          "nullable": false
+        },
+        {
+          "name": "tripId",
+          "type": "Edm.Int32",
+          "nullable": false
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "GetFavoriteAirline",
+      "isBound": "true",
+      "isComposable": "true",
+      "entitySetPath": "person/Trips/PlanItems/Microsoft.OData.SampleService.Models.TripPin.Flight/Airline",
+      "returnType": {
+        "type": "Microsoft.OData.SampleService.Models.TripPin.Airline",
+        "nullable": false
+      },
+      "parameters": [
+        {
+          "name": "person",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "name": "GetInvolvedPeople",
+      "isBound": "true",
+      "isComposable": "true",
+      "returnType": {
+        "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Person)",
+        "nullable": false
+      },
+      "parameters": [
+        {
+          "name": "trip",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Trip",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "name": "GetFriendsTrips",
+      "isBound": "true",
+      "isComposable": "true",
+      "entitySetPath": "person/Friends/Trips",
+      "returnType": {
+        "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Trip)",
+        "nullable": false
+      },
+      "parameters": [
+        {
+          "name": "person",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "nullable": false
+        },
+        {
+          "name": "userName",
+          "type": "Edm.String",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "name": "GetNearestAirport",
+      "isComposable": "true",
+      "returnType": {
+        "type": "Microsoft.OData.SampleService.Models.TripPin.Airport",
+        "nullable": false
+      },
+      "parameters": [
+        {
+          "name": "lat",
+          "type": "Edm.Double",
+          "nullable": false
+        },
+        {
+          "name": "lon",
+          "type": "Edm.Double",
+          "nullable": false
+        }
+      ]
+    }
+  ],
+  "defaultNamespace": "Microsoft.OData.SampleService.Models.TripPin",
+  "entityTypes": [
+    {
+      "name": "Photo",
+      "properties": [
+        {
+          "required": true,
+          "name": "Id",
+          "type": "Edm.Int64"
+        },
+        {
+          "required": false,
+          "name": "Name",
+          "type": "Edm.String"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "Id",
+          "type": "Edm.Int64"
+        }
+      ]
+    },
+    {
+      "name": "Person",
+      "properties": [
+        {
+          "required": true,
+          "name": "UserName",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "FirstName",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "LastName",
+          "type": "Edm.String"
+        },
+        {
+          "required": false,
+          "name": "Emails",
+          "type": "Collection(Edm.String)"
+        },
+        {
+          "required": false,
+          "name": "AddressInfo",
+          "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Location)"
+        },
+        {
+          "required": false,
+          "name": "Gender",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.PersonGender"
+        },
+        {
+          "required": true,
+          "name": "Concurrency",
+          "type": "Edm.Int64"
+        },
+        {
+          "name": "Friends",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+          }
+        },
+        {
+          "name": "Trips",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+          }
+        },
+        {
+          "name": "Photo",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo",
+          "x-ref": {
+            "name": "Photo",
+            "constraints": []
+          }
+        }
+      ],
+      "paths": [
+        {
+          "name": "Trips",
+          "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.Trip)"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "UserName",
+          "type": "Edm.String"
+        }
+      ]
+    },
+    {
+      "name": "Airline",
+      "properties": [
+        {
+          "required": true,
+          "name": "AirlineCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Name",
+          "type": "Edm.String"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "AirlineCode",
+          "type": "Edm.String"
+        }
+      ]
+    },
+    {
+      "name": "Airport",
+      "properties": [
+        {
+          "required": true,
+          "name": "IcaoCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Name",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "IataCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Location",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.AirportLocation"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "IcaoCode",
+          "type": "Edm.String"
+        }
+      ]
+    },
+    {
+      "name": "PlanItem",
+      "properties": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        },
+        {
+          "required": false,
+          "name": "ConfirmationCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": false,
+          "name": "StartsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "EndsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "Duration",
+          "type": "Edm.Duration"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        }
+      ]
+    },
+    {
+      "name": "PublicTransportation",
+      "properties": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        },
+        {
+          "required": false,
+          "name": "ConfirmationCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": false,
+          "name": "StartsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "EndsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "Duration",
+          "type": "Edm.Duration"
+        },
+        {
+          "required": false,
+          "name": "SeatNumber",
+          "type": "Edm.String"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        }
+      ]
+    },
+    {
+      "name": "Flight",
+      "properties": [
+        {
+          "required": false,
+          "name": "SeatNumber",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        },
+        {
+          "required": false,
+          "name": "ConfirmationCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": false,
+          "name": "StartsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "EndsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "Duration",
+          "type": "Edm.Duration"
+        },
+        {
+          "required": true,
+          "name": "FlightNumber",
+          "type": "Edm.String"
+        },
+        {
+          "name": "From",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "x-ref": {
+            "name": "From",
+            "constraints": []
+          }
+        },
+        {
+          "name": "To",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "x-ref": {
+            "name": "To",
+            "constraints": []
+          }
+        },
+        {
+          "name": "Airline",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline",
+          "x-ref": {
+            "name": "Airline",
+            "constraints": []
+          }
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        }
+      ]
+    },
+    {
+      "name": "Event",
+      "properties": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        },
+        {
+          "required": false,
+          "name": "ConfirmationCode",
+          "type": "Edm.String"
+        },
+        {
+          "required": false,
+          "name": "StartsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "EndsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": false,
+          "name": "Duration",
+          "type": "Edm.Duration"
+        },
+        {
+          "required": false,
+          "name": "Description",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "OccursAt",
+          "type": "Microsoft.OData.SampleService.Models.TripPin.EventLocation"
+        }
+      ],
+      "paths": [],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "PlanItemId",
+          "type": "Edm.Int32"
+        }
+      ]
+    },
+    {
+      "name": "Trip",
+      "properties": [
+        {
+          "required": true,
+          "name": "TripId",
+          "type": "Edm.Int32"
+        },
+        {
+          "required": false,
+          "name": "ShareId",
+          "type": "Edm.Guid"
+        },
+        {
+          "required": false,
+          "name": "Description",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Name",
+          "type": "Edm.String"
+        },
+        {
+          "required": true,
+          "name": "Budget",
+          "type": "Edm.Single"
+        },
+        {
+          "required": true,
+          "name": "StartsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": true,
+          "name": "EndsAt",
+          "type": "Edm.DateTimeOffset"
+        },
+        {
+          "required": true,
+          "name": "Tags",
+          "type": "Collection(Edm.String)"
+        },
+        {
+          "name": "Photos",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+          }
+        },
+        {
+          "name": "PlanItems",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+          }
+        }
+      ],
+      "paths": [
+        {
+          "name": "PlanItems",
+          "type": "Collection(Microsoft.OData.SampleService.Models.TripPin.PlanItem)"
+        }
+      ],
+      "namespace": "Microsoft.OData.SampleService.Models.TripPin",
+      "key": [
+        {
+          "required": true,
+          "name": "TripId",
+          "type": "Edm.Int32"
+        }
+      ]
+    }
+  ]
+}

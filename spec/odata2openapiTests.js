@@ -11,8 +11,9 @@ describe('Parse All Files Tests', async function Dummy() {
     it(`${file} Test`, async function () {
       const csdlString = fs.readFileSync(`./spec/samples/rawCsdlFiles/${file}`).toString();
       const service = await parse(csdlString);
+      fs.writeFileSync(`./spec/samples/serviceDescriptions/${file.substr(0, file.lastIndexOf("."))}.json`, JSON.stringify(service, null, 2));
       const openApiDefinition = convert(service.entitySets, service, service.version);
-      fs.writeFileSync(`./spec/samples/processedOpenApiFiles/${file}`, JSON.stringify(openApiDefinition, null, 2));
+      fs.writeFileSync(`./spec/samples/processedOpenApiFiles/${file.substr(0, file.lastIndexOf("."))}.json`, JSON.stringify(openApiDefinition, null, 2));
       expect(true).to.be.true;
     });
   });

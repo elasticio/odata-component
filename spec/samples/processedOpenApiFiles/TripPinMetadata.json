@@ -1,0 +1,1835 @@
+{
+  "swagger": "2.0",
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/",
+  "info": {
+    "title": "OData Service",
+    "version": "0.0.1",
+    "x-odata-version": "4.0"
+  },
+  "paths": {
+    "/Photos": {
+      "get": {
+        "operationId": "getPhotos",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Photo",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPhoto",
+        "parameters": [
+          {
+            "name": "Photo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Photos({Id})": {
+      "get": {
+        "operationId": "getPhotoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Photo.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePhoto",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePhoto",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "Photo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Photo.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People": {
+      "get": {
+        "operationId": "getPeople",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Person",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPerson",
+        "parameters": [
+          {
+            "name": "Person",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People('{UserName}')": {
+      "get": {
+        "operationId": "getPersonById",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Person.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePerson",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePerson",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Person",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Person.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People('{UserName}')/Trips": {
+      "get": {
+        "operationId": "getPeopleTrips",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Trip",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPeopleTrips",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Trip",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People('{UserName}')/Trips({tripTripId})": {
+      "get": {
+        "operationId": "getPeopleTripsById",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Trip.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePeopleTrips",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePeopleTrips",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Trip",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Trip.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "putPeopleTrips",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Trip",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Trip.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People('{UserName}')/Trips({tripTripId})/PlanItems": {
+      "get": {
+        "operationId": "getPeopleTripsPlanItems",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of PlanItem",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPeopleTripsPlanItems",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlanItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/People('{UserName}')/Trips({tripTripId})/PlanItems({planItemPlanItemId})": {
+      "get": {
+        "operationId": "getPeopleTripsPlanItemsById",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "planItemPlanItemId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A PlanItem.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePeopleTripsPlanItems",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "planItemPlanItemId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePeopleTripsPlanItems",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "planItemPlanItemId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlanItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A PlanItem.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "putPeopleTripsPlanItems",
+        "parameters": [
+          {
+            "name": "UserName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "tripTripId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "planItemPlanItemId",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlanItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A PlanItem.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Airlines": {
+      "get": {
+        "operationId": "getAirlines",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Airline",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAirline",
+        "parameters": [
+          {
+            "name": "Airline",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Airlines('{AirlineCode}')": {
+      "get": {
+        "operationId": "getAirlineById",
+        "parameters": [
+          {
+            "name": "AirlineCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Airline.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAirline",
+        "parameters": [
+          {
+            "name": "AirlineCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAirline",
+        "parameters": [
+          {
+            "name": "AirlineCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Airline",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Airline.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Airports": {
+      "get": {
+        "operationId": "getAirports",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Airport",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAirport",
+        "parameters": [
+          {
+            "name": "Airport",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Airports('{IcaoCode}')": {
+      "get": {
+        "operationId": "getAirportById",
+        "parameters": [
+          {
+            "name": "IcaoCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Airport.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAirport",
+        "parameters": [
+          {
+            "name": "IcaoCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAirport",
+        "parameters": [
+          {
+            "name": "IcaoCode",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Airport",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Airport.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Me": {
+      "get": {
+        "operationId": "getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A Microsoft.OData.SampleService.Models.TripPin.Person.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Me/Airline": {
+      "get": {
+        "operationId": "getMeAirline",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A Airline.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Me/From": {
+      "get": {
+        "operationId": "getMeFrom",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A From.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Me/To": {
+      "get": {
+        "operationId": "getMeTo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A To.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Me/Photos": {
+      "get": {
+        "operationId": "getMePhotos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A Photos.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ResetDataSource()": {
+      "post": {
+        "operationId": "resetDataSource",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/GetNearestAirport(lat={lat},lon={lon})": {
+      "get": {
+        "operationId": "getNearestAirport",
+        "parameters": [
+          {
+            "name": "lat",
+            "required": true,
+            "in": "path",
+            "type": "number"
+          },
+          {
+            "name": "lon",
+            "required": true,
+            "in": "path",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Photo": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Person": {
+      "type": "object",
+      "properties": {
+        "UserName": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Emails": {
+          "type": "object"
+        },
+        "AddressInfo": {
+          "type": "object"
+        },
+        "Gender": {
+          "type": "object"
+        },
+        "Concurrency": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Friends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Person"
+          }
+        },
+        "Trips": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Trip"
+          }
+        },
+        "Photo": {
+          "type": "object",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo",
+          "x-ref": {
+            "name": "Photo",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "UserName",
+        "FirstName",
+        "LastName",
+        "Concurrency"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Airline": {
+      "type": "object",
+      "properties": {
+        "AirlineCode": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "AirlineCode",
+        "Name"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Airport": {
+      "type": "object",
+      "properties": {
+        "IcaoCode": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "IataCode": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "IcaoCode",
+        "Name",
+        "IataCode",
+        "Location"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.City": {
+      "type": "object",
+      "properties": {
+        "CountryRegion": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "CountryRegion",
+        "Name",
+        "Region"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Location": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "string"
+        },
+        "City": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "Address",
+        "City"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.EventLocation": {
+      "type": "object",
+      "properties": {
+        "BuildingInfo": {
+          "type": "string"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.AirportLocation": {
+      "type": "object",
+      "properties": {
+        "Loc": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "Loc"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.PlanItem": {
+      "type": "object",
+      "properties": {
+        "PlanItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ConfirmationCode": {
+          "type": "string"
+        },
+        "StartsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Duration": {
+          "type": "string",
+          "format": "duration"
+        }
+      },
+      "required": [
+        "PlanItemId"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.PublicTransportation": {
+      "type": "object",
+      "properties": {
+        "PlanItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ConfirmationCode": {
+          "type": "string"
+        },
+        "StartsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Duration": {
+          "type": "string",
+          "format": "duration"
+        },
+        "SeatNumber": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "PlanItemId"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Flight": {
+      "type": "object",
+      "properties": {
+        "SeatNumber": {
+          "type": "string"
+        },
+        "PlanItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ConfirmationCode": {
+          "type": "string"
+        },
+        "StartsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Duration": {
+          "type": "string",
+          "format": "duration"
+        },
+        "FlightNumber": {
+          "type": "string"
+        },
+        "From": {
+          "type": "object",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "x-ref": {
+            "name": "From",
+            "constraints": []
+          }
+        },
+        "To": {
+          "type": "object",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "x-ref": {
+            "name": "To",
+            "constraints": []
+          }
+        },
+        "Airline": {
+          "type": "object",
+          "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Airline",
+          "x-ref": {
+            "name": "Airline",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "PlanItemId",
+        "FlightNumber"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Event": {
+      "type": "object",
+      "properties": {
+        "PlanItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ConfirmationCode": {
+          "type": "string"
+        },
+        "StartsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Duration": {
+          "type": "string",
+          "format": "duration"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "OccursAt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "PlanItemId",
+        "OccursAt"
+      ]
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Trip": {
+      "type": "object",
+      "properties": {
+        "TripId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ShareId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Budget": {
+          "type": "number",
+          "format": "single"
+        },
+        "StartsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Tags": {
+          "type": "object"
+        },
+        "Photos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.Photo"
+          }
+        },
+        "PlanItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.SampleService.Models.TripPin.PlanItem"
+          }
+        }
+      },
+      "required": [
+        "TripId",
+        "Name",
+        "Budget",
+        "StartsAt",
+        "EndsAt",
+        "Tags"
+      ]
+    },
+    "Me": {
+      "type": "object",
+      "properties": {
+        "Friends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "Airline": {
+          "type": "object",
+          "$ref": "#/definitions/Airline"
+        },
+        "From": {
+          "type": "object",
+          "$ref": "#/definitions/Airport"
+        },
+        "To": {
+          "type": "object",
+          "$ref": "#/definitions/Airport"
+        },
+        "Photo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Photo"
+          }
+        },
+        "Photos": {
+          "type": "object",
+          "$ref": "#/definitions/Photo"
+        }
+      }
+    }
+  }
+}
