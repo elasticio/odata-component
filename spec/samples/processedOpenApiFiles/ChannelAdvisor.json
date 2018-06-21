@@ -1,0 +1,5774 @@
+{
+  "swagger": "2.0",
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/",
+  "info": {
+    "title": "OData Service",
+    "version": "0.0.1",
+    "x-odata-version": "4.0"
+  },
+  "paths": {
+    "/Orders": {
+      "get": {
+        "operationId": "getOrders",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Order",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrder",
+        "parameters": [
+          {
+            "name": "Order",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Orders({ID})": {
+      "get": {
+        "operationId": "getOrderById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Order.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Order",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Order.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItems": {
+      "get": {
+        "operationId": "getOrderItems",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of OrderItem",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrderItem",
+        "parameters": [
+          {
+            "name": "OrderItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItems({ID})": {
+      "get": {
+        "operationId": "getOrderItemById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItem.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrderItem",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrderItem",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItem.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Fulfillments": {
+      "get": {
+        "operationId": "getFulfillments",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Fulfillment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFulfillment",
+        "parameters": [
+          {
+            "name": "Fulfillment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Fulfillments({ID})": {
+      "get": {
+        "operationId": "getFulfillmentById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Fulfillment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFulfillment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateFulfillment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Fulfillment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Fulfillment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FulfillmentItems": {
+      "get": {
+        "operationId": "getFulfillmentItems",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of FulfillmentItem",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFulfillmentItem",
+        "parameters": [
+          {
+            "name": "FulfillmentItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FulfillmentItems({ID})": {
+      "get": {
+        "operationId": "getFulfillmentItemById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A FulfillmentItem.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFulfillmentItem",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateFulfillmentItem",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "FulfillmentItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A FulfillmentItem.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DistributionCenters": {
+      "get": {
+        "operationId": "getDistributionCenters",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of DistributionCenter",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDistributionCenter",
+        "parameters": [
+          {
+            "name": "DistributionCenter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DistributionCenters({ID})": {
+      "get": {
+        "operationId": "getDistributionCenterById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A DistributionCenter.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteDistributionCenter",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDistributionCenter",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "DistributionCenter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A DistributionCenter.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DistributionCenter"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments": {
+      "get": {
+        "operationId": "getOrderAdjustments",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of OrderAdjustment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrderAdjustment",
+        "parameters": [
+          {
+            "name": "OrderAdjustment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments({ID})": {
+      "get": {
+        "operationId": "getOrderAdjustmentById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderAdjustment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrderAdjustment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrderAdjustment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderAdjustment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderAdjustment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments": {
+      "get": {
+        "operationId": "getOrderItemAdjustments",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of OrderItemAdjustment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrderItemAdjustment",
+        "parameters": [
+          {
+            "name": "OrderItemAdjustment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments({ID})": {
+      "get": {
+        "operationId": "getOrderItemAdjustmentById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItemAdjustment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrderItemAdjustment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrderItemAdjustment",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItemAdjustment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItemAdjustment.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemBundleComponents": {
+      "get": {
+        "operationId": "getOrderItemBundleComponents",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of OrderItemBundleComponent",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrderItemBundleComponent",
+        "parameters": [
+          {
+            "name": "OrderItemBundleComponent",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemBundleComponents({OrderID},{OrderItemID},{ProductID})": {
+      "get": {
+        "operationId": "getOrderItemBundleComponentById",
+        "parameters": [
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItemID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItemBundleComponent.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteOrderItemBundleComponent",
+        "parameters": [
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItemID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrderItemBundleComponent",
+        "parameters": [
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItemID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderItemBundleComponent",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A OrderItemBundleComponent.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemPromotions": {
+      "get": {
+        "operationId": "getOrderItemPromotions",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Promotion",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPromotion",
+        "parameters": [
+          {
+            "name": "Promotion",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemPromotions({ID})": {
+      "get": {
+        "operationId": "getPromotionById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Promotion.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePromotion",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePromotion",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Promotion",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Promotion.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CustomFields": {
+      "get": {
+        "operationId": "getCustomFields",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of CustomField",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomField",
+        "parameters": [
+          {
+            "name": "CustomField",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CustomFields({FieldID},{OrderID})": {
+      "get": {
+        "operationId": "getCustomFieldById",
+        "parameters": [
+          {
+            "name": "FieldID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A CustomField.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteCustomField",
+        "parameters": [
+          {
+            "name": "FieldID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCustomField",
+        "parameters": [
+          {
+            "name": "FieldID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "OrderID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomField",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A CustomField.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Profiles": {
+      "get": {
+        "operationId": "getProfiles",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Profile",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProfile",
+        "parameters": [
+          {
+            "name": "Profile",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Profiles({ID})": {
+      "get": {
+        "operationId": "getProfileById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Profile.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteProfile",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProfile",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Profile",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Profile.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products": {
+      "get": {
+        "operationId": "getProducts",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "name": "Product",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products({ID})": {
+      "get": {
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Product.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Product",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Product.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Images": {
+      "get": {
+        "operationId": "getImages",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Image",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createImage",
+        "parameters": [
+          {
+            "name": "Image",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Images({ProductID},'{PlacementName}')": {
+      "get": {
+        "operationId": "getImageById",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlacementName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Image.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteImage",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlacementName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateImage",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PlacementName",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Image",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Image.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AttributeValues": {
+      "get": {
+        "operationId": "getAttributeValues",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of AttributeValue",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAttributeValue",
+        "parameters": [
+          {
+            "name": "AttributeValue",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AttributeValues({ProductID},'{Name}')": {
+      "get": {
+        "operationId": "getAttributeValueById",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A AttributeValue.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAttributeValue",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAttributeValue",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "AttributeValue",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A AttributeValue.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DCQuantities": {
+      "get": {
+        "operationId": "getDCQuantities",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of DCQuantity",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDCQuantity",
+        "parameters": [
+          {
+            "name": "DCQuantity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DCQuantities({ProductID},{DistributionCenterID})": {
+      "get": {
+        "operationId": "getDCQuantityById",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "DistributionCenterID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A DCQuantity.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteDCQuantity",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "DistributionCenterID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDCQuantity",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "DistributionCenterID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "DCQuantity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A DCQuantity.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductLabels": {
+      "get": {
+        "operationId": "getProductLabels",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ProductLabel",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductLabel",
+        "parameters": [
+          {
+            "name": "ProductLabel",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductLabels({ProductID},'{Name}')": {
+      "get": {
+        "operationId": "getProductLabelById",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ProductLabel.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteProductLabel",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductLabel",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "ProductLabel",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ProductLabel.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductBundleComponents": {
+      "get": {
+        "operationId": "getProductBundleComponents",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ProductBundleComponent",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductBundleComponent",
+        "parameters": [
+          {
+            "name": "ProductBundleComponent",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductBundleComponents({ProductID},{ComponentID})": {
+      "get": {
+        "operationId": "getProductBundleComponentById",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ComponentID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ProductBundleComponent.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteProductBundleComponent",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ComponentID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductBundleComponent",
+        "parameters": [
+          {
+            "name": "ProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ComponentID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ProductBundleComponent",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ProductBundleComponent.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Children": {
+      "get": {
+        "operationId": "getChildren",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ChildRelationship",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createChildRelationship",
+        "parameters": [
+          {
+            "name": "ChildRelationship",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Children({ParentProductID},{ChildProductID})": {
+      "get": {
+        "operationId": "getChildRelationshipById",
+        "parameters": [
+          {
+            "name": "ParentProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ChildProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ChildRelationship.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteChildRelationship",
+        "parameters": [
+          {
+            "name": "ParentProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ChildProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateChildRelationship",
+        "parameters": [
+          {
+            "name": "ParentProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ChildProductID",
+            "required": true,
+            "in": "path",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ChildRelationship",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ChildRelationship.",
+            "schema": {
+              "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Orders({ID})/ChannelAdvisor.RestApi.V1.Models.Ship()": {
+      "post": {
+        "operationId": "ordersOrderShipByValue",
+        "parameters": [
+          {
+            "name": "Value",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.ShipOrderRequest"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Orders({ID})/ChannelAdvisor.RestApi.V1.Models.Adjust()": {
+      "post": {
+        "operationId": "ordersOrderAdjustByAdjustmentAmountReasonPreventSiteProcessingSellerAdjustmentIDRestock",
+        "parameters": [
+          {
+            "name": "AdjustmentAmount",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "Reason",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.AdjustmentReason"
+          },
+          {
+            "name": "PreventSiteProcessing",
+            "required": false,
+            "in": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "SellerAdjustmentID",
+            "required": false,
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "Restock",
+            "required": false,
+            "in": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Orders({ID})/ChannelAdvisor.RestApi.V1.Models.Export()": {
+      "post": {
+        "operationId": "ordersOrderExport",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItems({ID})/ChannelAdvisor.RestApi.V1.Models.Adjust()": {
+      "post": {
+        "operationId": "orderItemsOrderItemAdjustByQuantityReasonRestockItemAdjustmentTaxAdjustmentShippingAdjustmentShippingTaxAdjustmentGiftWrapAdjustmentGiftWrapTaxAdjustmentRecyclingFeeAdjustmentPreventSiteProcessingSellerAdjustmentID",
+        "parameters": [
+          {
+            "name": "Quantity",
+            "required": false,
+            "in": "body",
+            "type": "integer"
+          },
+          {
+            "name": "Reason",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.AdjustmentReason"
+          },
+          {
+            "name": "Restock",
+            "required": false,
+            "in": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "ItemAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "TaxAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "ShippingAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "ShippingTaxAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "GiftWrapAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "GiftWrapTaxAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "RecyclingFeeAdjustment",
+            "required": false,
+            "in": "body",
+            "type": "number"
+          },
+          {
+            "name": "PreventSiteProcessing",
+            "required": false,
+            "in": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "SellerAdjustmentID",
+            "required": false,
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Fulfillments({ID})/ChannelAdvisor.RestApi.V1.Models.Move()": {
+      "post": {
+        "operationId": "fulfillmentsFulfillmentMoveByDestinationFulfillmentID",
+        "parameters": [
+          {
+            "name": "DestinationFulfillmentID",
+            "required": true,
+            "in": "body",
+            "type": "integer"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FulfillmentItems({ID})/ChannelAdvisor.RestApi.V1.Models.Move()": {
+      "post": {
+        "operationId": "fulfillmentItemsFulfillmentItemMoveByDestinationFulfillmentIDQuantity",
+        "parameters": [
+          {
+            "name": "DestinationFulfillmentID",
+            "required": true,
+            "in": "body",
+            "type": "integer"
+          },
+          {
+            "name": "Quantity",
+            "required": false,
+            "in": "body",
+            "type": "integer"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.ApproveBuyerRequest()": {
+      "post": {
+        "operationId": "orderAdjustmentsOrderAdjustmentApproveBuyerRequest",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.RejectBuyerRequest()": {
+      "post": {
+        "operationId": "orderAdjustmentsOrderAdjustmentRejectBuyerRequest",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.ApproveReturn()": {
+      "post": {
+        "operationId": "orderAdjustmentsOrderAdjustmentApproveReturn",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.RejectReturn()": {
+      "post": {
+        "operationId": "orderAdjustmentsOrderAdjustmentRejectReturn",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.ApproveBuyerRequest()": {
+      "post": {
+        "operationId": "orderItemAdjustmentsOrderItemAdjustmentApproveBuyerRequest",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.RejectBuyerRequest()": {
+      "post": {
+        "operationId": "orderItemAdjustmentsOrderItemAdjustmentRejectBuyerRequest",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.ApproveReturn()": {
+      "post": {
+        "operationId": "orderItemAdjustmentsOrderItemAdjustmentApproveReturn",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/OrderItemAdjustments({ID})/ChannelAdvisor.RestApi.V1.Models.RejectReturn()": {
+      "post": {
+        "operationId": "orderItemAdjustmentsOrderItemAdjustmentRejectReturn",
+        "parameters": [
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products({ID})/ChannelAdvisor.RestApi.V1.Models.UpdateQuantity()": {
+      "post": {
+        "operationId": "productsProductUpdateQuantityByValue",
+        "parameters": [
+          {
+            "name": "Value",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.QuantityUpdateRequest"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products({ID})/ChannelAdvisor.RestApi.V1.Models.RemoveChildren()": {
+      "post": {
+        "operationId": "productsProductRemoveChildrenByValue",
+        "parameters": [
+          {
+            "name": "Value",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.ChildrenRemoveRequest"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products({ID})/ChannelAdvisor.RestApi.V1.Models.UpdateAttributes()": {
+      "post": {
+        "operationId": "productsProductUpdateAttributesByValue",
+        "parameters": [
+          {
+            "name": "Value",
+            "required": false,
+            "in": "body",
+            "type": "ChannelAdvisor.RestApi.V1.Models.AttributesUpdateRequest"
+          },
+          {
+            "name": "ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Order": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteName": {
+          "type": "string"
+        },
+        "SiteAccountID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteOrderID": {
+          "type": "string"
+        },
+        "SecondarySiteOrderID": {
+          "type": "string"
+        },
+        "SellerOrderID": {
+          "type": "string"
+        },
+        "CheckoutSourceID": {
+          "type": "string",
+          "format": "byte"
+        },
+        "CreatedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ImportDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "PublicNotes": {
+          "type": "string"
+        },
+        "PrivateNotes": {
+          "type": "string"
+        },
+        "SpecialInstructions": {
+          "type": "string"
+        },
+        "TotalPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalTaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalShippingPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalShippingTaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalInsurancePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalGiftOptionPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TotalGiftOptionTaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "AdditionalCostOrDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "EstimatedShipDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DeliverByDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ResellerID": {
+          "type": "string"
+        },
+        "FlagID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FlagDescription": {
+          "type": "string"
+        },
+        "OrderTags": {
+          "type": "string"
+        },
+        "DistributionCenterTypeRollup": {
+          "type": "object"
+        },
+        "CheckoutStatus": {
+          "type": "object"
+        },
+        "PaymentStatus": {
+          "type": "object"
+        },
+        "ShippingStatus": {
+          "type": "object"
+        },
+        "CheckoutDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "PaymentDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ShippingDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "BuyerUserId": {
+          "type": "string"
+        },
+        "BuyerEmailAddress": {
+          "type": "string"
+        },
+        "BuyerEmailOptIn": {
+          "type": "boolean"
+        },
+        "OrderTaxType": {
+          "type": "object"
+        },
+        "ShippingTaxType": {
+          "type": "object"
+        },
+        "GiftOptionsTaxType": {
+          "type": "object"
+        },
+        "PaymentMethod": {
+          "type": "string"
+        },
+        "PaymentTransactionID": {
+          "type": "string"
+        },
+        "PaymentPaypalAccountID": {
+          "type": "string"
+        },
+        "PaymentCreditCardLast4": {
+          "type": "string"
+        },
+        "PaymentMerchantReferenceNumber": {
+          "type": "string"
+        },
+        "ShippingTitle": {
+          "type": "string"
+        },
+        "ShippingFirstName": {
+          "type": "string"
+        },
+        "ShippingLastName": {
+          "type": "string"
+        },
+        "ShippingSuffix": {
+          "type": "string"
+        },
+        "ShippingCompanyName": {
+          "type": "string"
+        },
+        "ShippingCompanyJobTitle": {
+          "type": "string"
+        },
+        "ShippingDaytimePhone": {
+          "type": "string"
+        },
+        "ShippingEveningPhone": {
+          "type": "string"
+        },
+        "ShippingAddressLine1": {
+          "type": "string"
+        },
+        "ShippingAddressLine2": {
+          "type": "string"
+        },
+        "ShippingCity": {
+          "type": "string"
+        },
+        "ShippingStateOrProvince": {
+          "type": "string"
+        },
+        "ShippingStateOrProvinceName": {
+          "type": "string"
+        },
+        "ShippingPostalCode": {
+          "type": "string"
+        },
+        "ShippingCountry": {
+          "type": "string"
+        },
+        "BillingTitle": {
+          "type": "string"
+        },
+        "BillingFirstName": {
+          "type": "string"
+        },
+        "BillingLastName": {
+          "type": "string"
+        },
+        "BillingSuffix": {
+          "type": "string"
+        },
+        "BillingCompanyName": {
+          "type": "string"
+        },
+        "BillingCompanyJobTitle": {
+          "type": "string"
+        },
+        "BillingDaytimePhone": {
+          "type": "string"
+        },
+        "BillingEveningPhone": {
+          "type": "string"
+        },
+        "BillingAddressLine1": {
+          "type": "string"
+        },
+        "BillingAddressLine2": {
+          "type": "string"
+        },
+        "BillingCity": {
+          "type": "string"
+        },
+        "BillingStateOrProvince": {
+          "type": "string"
+        },
+        "BillingStateOrProvinceName": {
+          "type": "string"
+        },
+        "BillingPostalCode": {
+          "type": "string"
+        },
+        "BillingCountry": {
+          "type": "string"
+        },
+        "PromotionCode": {
+          "type": "string"
+        },
+        "PromotionAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem"
+          }
+        },
+        "Fulfillments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment"
+          }
+        },
+        "Adjustments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderAdjustment"
+          }
+        },
+        "CustomFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.CustomField"
+          }
+        },
+        "Exports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ExportStatus"
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "SiteID",
+        "CreatedDateUtc",
+        "ImportDateUtc",
+        "TotalPrice",
+        "TotalTaxPrice",
+        "TotalShippingPrice",
+        "TotalInsurancePrice",
+        "AdditionalCostOrDiscount",
+        "DistributionCenterTypeRollup",
+        "CheckoutStatus",
+        "PaymentStatus",
+        "ShippingStatus",
+        "OrderTaxType",
+        "ShippingTaxType",
+        "GiftOptionsTaxType",
+        "PromotionAmount"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.OrderItem": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteOrderItemID": {
+          "type": "string"
+        },
+        "SellerOrderItemID": {
+          "type": "string"
+        },
+        "SiteListingID": {
+          "type": "string"
+        },
+        "Sku": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "UnitPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "TaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingTaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "RecyclingFee": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftMessage": {
+          "type": "string"
+        },
+        "GiftNotes": {
+          "type": "string"
+        },
+        "GiftPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftTaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "IsBundle": {
+          "type": "boolean"
+        },
+        "ItemURL": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order",
+          "x-ref": {
+            "name": "Order",
+            "constraints": [
+              {
+                "property": "OrderID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        },
+        "BundleComponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent"
+          }
+        },
+        "FulfillmentItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+          }
+        },
+        "Promotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Promotion"
+          }
+        },
+        "Adjustments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment"
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "ProductID",
+        "Quantity",
+        "TaxPrice",
+        "ShippingPrice",
+        "ShippingTaxPrice",
+        "RecyclingFee",
+        "GiftPrice",
+        "GiftTaxPrice",
+        "IsBundle"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Fulfillment": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Type": {
+          "type": "object"
+        },
+        "DeliveryStatus": {
+          "type": "object"
+        },
+        "TrackingNumber": {
+          "type": "string"
+        },
+        "ShippingCarrier": {
+          "type": "string"
+        },
+        "ShippingClass": {
+          "type": "string"
+        },
+        "DistributionCenterID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ExternalFulfillmentCenterCode": {
+          "type": "string"
+        },
+        "ShippingCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "InsuranceCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "TaxCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "SellerFulfillmentID": {
+          "type": "string"
+        },
+        "HasShippingLabel": {
+          "type": "boolean"
+        },
+        "Order": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order",
+          "x-ref": {
+            "name": "Order",
+            "constraints": [
+              {
+                "property": "OrderID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "Type",
+        "DeliveryStatus",
+        "DistributionCenterID",
+        "HasShippingLabel"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.FulfillmentItem": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FulfillmentID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderItemID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Fulfillment": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Fulfillment",
+          "x-ref": {
+            "name": "Fulfillment",
+            "constraints": [
+              {
+                "property": "FulfillmentID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        },
+        "OrderItem": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem",
+          "x-ref": {
+            "name": "OrderItem",
+            "constraints": [
+              {
+                "property": "OrderItemID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        },
+        "BundleComponent": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent",
+          "x-ref": {
+            "name": "BundleComponent",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "OrderID",
+        "Quantity",
+        "ProductID"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.DistributionCenter": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "ContactName": {
+          "type": "string"
+        },
+        "ContactEmail": {
+          "type": "string"
+        },
+        "ContactPhone": {
+          "type": "string"
+        },
+        "Address1": {
+          "type": "string"
+        },
+        "Address2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "PickupLocation": {
+          "type": "boolean"
+        },
+        "ShipLocation": {
+          "type": "boolean"
+        },
+        "Type": {
+          "type": "object"
+        },
+        "IsExternallyManaged": {
+          "type": "boolean"
+        },
+        "IsDeleted": {
+          "type": "boolean"
+        },
+        "DeletedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ID",
+        "PickupLocation",
+        "ShipLocation",
+        "Type",
+        "IsExternallyManaged",
+        "IsDeleted"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.OrderAdjustment": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsRestock": {
+          "type": "boolean"
+        },
+        "Reason": {
+          "type": "object"
+        },
+        "ItemAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "TaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingTaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftWrapAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftWrapTaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "RecyclingFeeAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "Type": {
+          "type": "object"
+        },
+        "SellerAdjustmentID": {
+          "type": "string"
+        },
+        "PublicNotes": {
+          "type": "string"
+        },
+        "Comment": {
+          "type": "string"
+        },
+        "CreatedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "RequestStatus": {
+          "type": "object"
+        },
+        "RestockStatus": {
+          "type": "object"
+        },
+        "RmaNumber": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order",
+          "x-ref": {
+            "name": "Order",
+            "constraints": [
+              {
+                "property": "OrderID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "IsRestock",
+        "Reason",
+        "Type",
+        "RequestStatus"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.OrderItemAdjustment": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderItemID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsRestock": {
+          "type": "boolean"
+        },
+        "Reason": {
+          "type": "object"
+        },
+        "ItemAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "TaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingTaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftWrapAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "GiftWrapTaxAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "RecyclingFeeAdjustment": {
+          "type": "number",
+          "format": "double"
+        },
+        "Type": {
+          "type": "object"
+        },
+        "SellerAdjustmentID": {
+          "type": "string"
+        },
+        "PublicNotes": {
+          "type": "string"
+        },
+        "Comment": {
+          "type": "string"
+        },
+        "CreatedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "RequestStatus": {
+          "type": "object"
+        },
+        "RestockStatus": {
+          "type": "object"
+        },
+        "RmaNumber": {
+          "type": "string"
+        },
+        "OrderItem": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem",
+          "x-ref": {
+            "name": "OrderItem",
+            "constraints": [
+              {
+                "property": "OrderItemID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "OrderID",
+        "IsRestock",
+        "Reason",
+        "Type",
+        "RequestStatus"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.OrderItemBundleComponent": {
+      "type": "object",
+      "properties": {
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderItemID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BundleProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Sku": {
+          "type": "string"
+        },
+        "BundleSku": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderItem": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem",
+          "x-ref": {
+            "name": "OrderItem",
+            "constraints": [
+              {
+                "property": "OrderItemID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        },
+        "FulfillmentItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.FulfillmentItem"
+          }
+        }
+      },
+      "required": [
+        "OrderID",
+        "ProductID",
+        "ProfileID",
+        "BundleProductID",
+        "Quantity"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Promotion": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "ShippingAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "OrderItem": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.OrderItem",
+          "x-ref": {
+            "name": "OrderItem",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "Amount",
+        "ShippingAmount"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.CustomField": {
+      "type": "object",
+      "properties": {
+        "FieldID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order",
+          "x-ref": {
+            "name": "Order",
+            "constraints": [
+              {
+                "property": "OrderID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "FieldID",
+        "ProfileID"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Profile": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AccountName": {
+          "type": "string"
+        },
+        "CompanyName": {
+          "type": "string"
+        },
+        "CurrencyCode": {
+          "type": "string"
+        },
+        "TimeZoneRegion": {
+          "type": "string"
+        },
+        "TimeZoneDescription": {
+          "type": "string"
+        },
+        "DefaultDistributionCenterID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteAccounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.SiteAccount"
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "DefaultDistributionCenterID"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Product": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreateDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdateDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "QuantityUpdateDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "IsAvailableInStore": {
+          "type": "boolean"
+        },
+        "IsBlocked": {
+          "type": "boolean"
+        },
+        "IsExternalQuantityBlocked": {
+          "type": "boolean"
+        },
+        "BlockComment": {
+          "type": "string"
+        },
+        "BlockedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ReceivedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "LastSaleDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ASIN": {
+          "type": "string"
+        },
+        "Brand": {
+          "type": "string"
+        },
+        "Condition": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "EAN": {
+          "type": "string"
+        },
+        "FlagDescription": {
+          "type": "string"
+        },
+        "Flag": {
+          "type": "object"
+        },
+        "HarmonizedCode": {
+          "type": "string"
+        },
+        "ISBN": {
+          "type": "string"
+        },
+        "Manufacturer": {
+          "type": "string"
+        },
+        "MPN": {
+          "type": "string"
+        },
+        "ShortDescription": {
+          "type": "string"
+        },
+        "Sku": {
+          "type": "string"
+        },
+        "Subtitle": {
+          "type": "string"
+        },
+        "TaxProductCode": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "UPC": {
+          "type": "string"
+        },
+        "WarehouseLocation": {
+          "type": "string"
+        },
+        "Warranty": {
+          "type": "string"
+        },
+        "Height": {
+          "type": "number",
+          "format": "double"
+        },
+        "Length": {
+          "type": "number",
+          "format": "double"
+        },
+        "Width": {
+          "type": "number",
+          "format": "double"
+        },
+        "Weight": {
+          "type": "number",
+          "format": "double"
+        },
+        "Cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "Margin": {
+          "type": "number",
+          "format": "double"
+        },
+        "RetailPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "StartingPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "ReservePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "BuyItNowPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "StorePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "SecondChancePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "MinPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "MaxPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "SupplierName": {
+          "type": "string"
+        },
+        "SupplierCode": {
+          "type": "string"
+        },
+        "SupplierPO": {
+          "type": "string"
+        },
+        "Classification": {
+          "type": "string"
+        },
+        "IsDisplayInStore": {
+          "type": "boolean"
+        },
+        "StoreTitle": {
+          "type": "string"
+        },
+        "StoreDescription": {
+          "type": "string"
+        },
+        "BundleType": {
+          "type": "object"
+        },
+        "TotalAvailableQuantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OpenAllocatedQuantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "OpenAllocatedQuantityPooled": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingCheckoutQuantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingCheckoutQuantityPooled": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingPaymentQuantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingPaymentQuantityPooled": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingShipmentQuantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PendingShipmentQuantityPooled": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "TotalQuantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "TotalQuantityPooled": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IsParent": {
+          "type": "boolean"
+        },
+        "IsInRelationship": {
+          "type": "boolean"
+        },
+        "ParentProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "RelationshipName": {
+          "type": "string"
+        },
+        "USP": {
+          "type": "string"
+        },
+        "CategoryPath": {
+          "type": "string"
+        },
+        "CategoryCode": {
+          "type": "string"
+        },
+        "Attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeValue"
+          }
+        },
+        "DCQuantities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCQuantity"
+          }
+        },
+        "Images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Image"
+          }
+        },
+        "Labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductLabel"
+          }
+        },
+        "BundleComponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent"
+          }
+        },
+        "Children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ChildRelationship"
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "Flag",
+        "BundleType",
+        "OpenAllocatedQuantity",
+        "OpenAllocatedQuantityPooled",
+        "PendingCheckoutQuantity",
+        "PendingCheckoutQuantityPooled",
+        "PendingPaymentQuantity",
+        "PendingPaymentQuantityPooled",
+        "PendingShipmentQuantity",
+        "PendingShipmentQuantityPooled"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.Image": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "PlacementName": {
+          "type": "string"
+        },
+        "Abbreviation": {
+          "type": "string"
+        },
+        "Url": {
+          "type": "string"
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "Product",
+            "constraints": [
+              {
+                "property": "ProductID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ProfileID",
+        "PlacementName"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.AttributeValue": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "Product",
+            "constraints": [
+              {
+                "property": "ProductID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ProfileID",
+        "Name"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.DCQuantity": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DistributionCenterID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AvailableQuantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "Product",
+            "constraints": [
+              {
+                "property": "ProductID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ProfileID",
+        "DistributionCenterID",
+        "AvailableQuantity"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ProductLabel": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "Product",
+            "constraints": [
+              {
+                "property": "ProductID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ProfileID",
+        "Name"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ProductBundleComponent": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ComponentID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ComponentSku": {
+          "type": "string"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "Product",
+            "constraints": [
+              {
+                "property": "ProductID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ComponentID",
+        "ProfileID",
+        "Quantity"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ChildRelationship": {
+      "type": "object",
+      "properties": {
+        "ParentProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChildProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChildProduct": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Product",
+          "x-ref": {
+            "name": "ChildProduct",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "ParentProductID",
+        "ProfileID",
+        "ChildProductID"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ShipOrderRequest": {
+      "type": "object",
+      "properties": {
+        "ShippedDateUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "TrackingNumber": {
+          "type": "string"
+        },
+        "ShippingCarrier": {
+          "type": "string"
+        },
+        "ShippingClass": {
+          "type": "string"
+        },
+        "DistributionCenterID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SellerFulfillmentID": {
+          "type": "string"
+        },
+        "DeliveryStatus": {
+          "type": "object"
+        },
+        "FulfillmentType": {
+          "type": "object"
+        },
+        "Items": {
+          "type": "object"
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.QuantityUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "CompleteDCList": {
+          "type": "boolean"
+        },
+        "UpdateType": {
+          "type": "object"
+        },
+        "Updates": {
+          "type": "object"
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ChildrenRemoveRequest": {
+      "type": "object",
+      "properties": {
+        "ChildProductIDList": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "ChildProductIDList"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.AttributesUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "Attributes": {
+          "type": "object"
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ShipOrderRequestItem": {
+      "type": "object",
+      "properties": {
+        "OrderItemID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Sku": {
+          "type": "string"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "Quantity"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.DCxQtyUpdate": {
+      "type": "object",
+      "properties": {
+        "DistributionCenterID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.AttributeUpdate": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "ChannelAdvisor.RestApi.V1.Models.ExportStatus": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProfileID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ApplicationID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DeveloperKey": {
+          "type": "string"
+        },
+        "Override": {
+          "type": "boolean"
+        },
+        "Order": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Order",
+          "x-ref": {
+            "name": "Order",
+            "constraints": [
+              {
+                "property": "OrderID",
+                "refProperty": "ID"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "ProfileID",
+        "Override"
+      ]
+    },
+    "ChannelAdvisor.RestApi.V1.Models.SiteAccount": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteAccountName": {
+          "type": "string"
+        },
+        "SiteID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SiteName": {
+          "type": "string"
+        },
+        "Enabled": {
+          "type": "boolean"
+        },
+        "Profile": {
+          "type": "object",
+          "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.Profile",
+          "x-ref": {
+            "name": "Profile",
+            "constraints": []
+          }
+        }
+      },
+      "required": [
+        "ID",
+        "SiteID",
+        "Enabled"
+      ]
+    }
+  }
+}
