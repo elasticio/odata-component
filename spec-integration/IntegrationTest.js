@@ -76,7 +76,140 @@ describe('Integration Test', function () {
   describe('Metadata Tests', function () {
     it('Build In Metadata', async function () {
       cfg.objectType = 'People';
-      await upsertObject.getMetaModel(cfg);
+      const metadata = await upsertObject.getMetaModel(cfg);
+
+      expect(metadata.in).to.deep.equal(metadata.out);
+      expect(metadata.in.type).to.equal('object');
+      expect(metadata.in.required).to.be.true;
+
+      const properties = metadata.in.properties;
+
+      expect(properties.UserName).to.deep.include({
+        type: 'string',
+        required: true,
+        title: 'UserName'
+      });
+      expect(properties.FirstName).to.deep.include({
+        type: 'string',
+        required: true,
+        title: 'FirstName'
+      });
+      expect(properties.LastName).to.deep.include({
+        type: 'string',
+        required: false,
+        title: 'LastName'
+      });
+      expect(properties.MiddleName).to.deep.include({
+        type: 'string',
+        required: false,
+        title: 'MiddleName'
+      });
+      expect(properties.Gender).to.deep.include({
+        type: 'string',
+        required: true,
+        enum: ['Male', 'Female', 'Unknow'],
+        title: 'Gender'
+      });
+      expect(properties.Age).to.deep.include({
+        type: 'number',
+        required: false,
+        title: 'Age'
+      });
+      expect(properties.Emails).to.deep.include({
+        type: 'array',
+        items: {
+          type: 'string'
+        },
+        required: false,
+        title: 'Emails'
+      });
+      expect(properties.AddressInfo).to.deep.include({
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            Address: {
+              type: 'string',
+              required: true,
+              title: 'Address'
+            },
+            City: {
+              type: 'object',
+              required: true,
+              properties: {
+                Name: {
+                  type: 'string',
+                  required: true,
+                  title: 'Name'
+                },
+                CountryRegion: {
+                  type: 'string',
+                  required: true,
+                  title: 'CountryRegion'
+                },
+                Region: {
+                  type: 'string',
+                  required: true,
+                  title: 'Region'
+                }
+              }
+            }
+          }
+        },
+        required: false,
+        title: 'AddressInfo'
+      });
+
+      expect(properties.HomeAddress).to.deep.include({
+        type: 'object',
+        properties: {
+          Address: {
+            type: 'string',
+            required: true,
+            title: 'Address'
+          },
+          City: {
+            type: 'object',
+            required: true,
+            properties: {
+              Name: {
+                type: 'string',
+                required: true,
+                title: 'Name'
+              },
+              CountryRegion: {
+                type: 'string',
+                required: true,
+                title: 'CountryRegion'
+              },
+              Region: {
+                type: 'string',
+                required: true,
+                title: 'Region'
+              }
+            }
+          }
+        },
+        required: false,
+        title: 'HomeAddress'
+      });
+
+      expect(properties.FavoriteFeature).to.be.include({
+        type: 'string',
+        required: true,
+        enum: ['Feature1', 'Feature2', 'Feature3', 'Feature4'],
+        title: 'FavoriteFeature'
+      });
+
+      expect(properties.Features).to.be.include({
+        type: 'array',
+        required: true,
+        items: {
+          type: 'string',
+          enum: ['Feature1', 'Feature2', 'Feature3', 'Feature4']
+        },
+        title: 'Features'
+      });
     });
   });
 

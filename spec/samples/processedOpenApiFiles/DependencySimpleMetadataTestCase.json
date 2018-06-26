@@ -847,10 +847,16 @@
           "format": "int64"
         },
         "Emails": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         "AddressInfo": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         "HomeAddress": {
           "type": "object"
@@ -859,7 +865,10 @@
           "type": "object"
         },
         "Features": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         "Friends": {
           "type": "array",
@@ -947,10 +956,16 @@
           "format": "int64"
         },
         "Emails": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         "AddressInfo": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         "HomeAddress": {
           "type": "object"
@@ -959,7 +974,10 @@
           "type": "object"
         },
         "Features": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         "Friends": {
           "type": "array",
@@ -1053,7 +1071,10 @@
           "type": "string"
         },
         "Tags": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         "StartsAt": {
           "type": "string",
@@ -1260,10 +1281,16 @@
           "format": "int64"
         },
         "Emails": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         "AddressInfo": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         "HomeAddress": {
           "type": "object"
@@ -1272,7 +1299,10 @@
           "type": "object"
         },
         "Features": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         "Cost": {
           "type": "integer",
@@ -1317,10 +1347,16 @@
           "format": "int64"
         },
         "Emails": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         "AddressInfo": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         "HomeAddress": {
           "type": "object"
@@ -1329,7 +1365,10 @@
           "type": "object"
         },
         "Features": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         "Budget": {
           "type": "integer",

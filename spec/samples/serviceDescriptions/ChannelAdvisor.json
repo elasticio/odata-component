@@ -2270,7 +2270,10 @@
         {
           "required": false,
           "name": "Items",
-          "type": "Collection(ChannelAdvisor.RestApi.V1.Models.ShipOrderRequestItem)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ShipOrderRequestItem"
+          }
         }
       ],
       "namespace": "ChannelAdvisor.RestApi.V1.Models"
@@ -2291,7 +2294,10 @@
         {
           "required": false,
           "name": "Updates",
-          "type": "Collection(ChannelAdvisor.RestApi.V1.Models.DCxQtyUpdate)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCxQtyUpdate"
+          }
         }
       ],
       "namespace": "ChannelAdvisor.RestApi.V1.Models"
@@ -2302,7 +2308,10 @@
         {
           "required": true,
           "name": "ChildProductIDList",
-          "type": "Collection(Edm.Int32)"
+          "type": "array",
+          "items": {
+            "type": "Edm.Int32"
+          }
         }
       ],
       "namespace": "ChannelAdvisor.RestApi.V1.Models"
@@ -2313,7 +2322,10 @@
         {
           "required": false,
           "name": "Attributes",
-          "type": "Collection(ChannelAdvisor.RestApi.V1.Models.AttributeUpdate)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeUpdate"
+          }
         }
       ],
       "namespace": "ChannelAdvisor.RestApi.V1.Models"

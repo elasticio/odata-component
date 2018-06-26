@@ -5606,7 +5606,10 @@
           "type": "object"
         },
         "Items": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.ShipOrderRequestItem"
+          }
         }
       }
     },
@@ -5620,7 +5623,10 @@
           "type": "object"
         },
         "Updates": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.DCxQtyUpdate"
+          }
         }
       }
     },
@@ -5628,7 +5634,10 @@
       "type": "object",
       "properties": {
         "ChildProductIDList": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "Edm.Int32"
+          }
         }
       },
       "required": [
@@ -5639,7 +5648,10 @@
       "type": "object",
       "properties": {
         "Attributes": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelAdvisor.RestApi.V1.Models.AttributeUpdate"
+          }
         }
       }
     },

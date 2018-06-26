@@ -39,12 +39,18 @@
           {
             "required": false,
             "name": "Emails",
-            "type": "Collection(Edm.String)"
+            "type": "array",
+            "items": {
+              "type": "Edm.String"
+            }
           },
           {
             "required": false,
             "name": "AddressInfo",
-            "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+            }
           },
           {
             "required": false,
@@ -59,7 +65,10 @@
           {
             "required": true,
             "name": "Features",
-            "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+            }
           },
           {
             "name": "Friends",
@@ -203,12 +212,18 @@
           {
             "required": false,
             "name": "Emails",
-            "type": "Collection(Edm.String)"
+            "type": "array",
+            "items": {
+              "type": "Edm.String"
+            }
           },
           {
             "required": false,
             "name": "AddressInfo",
-            "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+            }
           },
           {
             "required": false,
@@ -223,7 +238,10 @@
           {
             "required": true,
             "name": "Features",
-            "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+            }
           },
           {
             "name": "Friends",
@@ -497,12 +515,18 @@
         {
           "required": false,
           "name": "Emails",
-          "type": "Collection(Edm.String)"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         {
           "required": false,
           "name": "AddressInfo",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         {
           "required": false,
@@ -517,7 +541,10 @@
         {
           "required": true,
           "name": "Features",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         {
           "name": "Friends",
@@ -641,7 +668,10 @@
         {
           "required": false,
           "name": "Tags",
-          "type": "Collection(Edm.String)"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         {
           "required": true,
@@ -912,12 +942,18 @@
         {
           "required": false,
           "name": "Emails",
-          "type": "Collection(Edm.String)"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         {
           "required": false,
           "name": "AddressInfo",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         {
           "required": false,
@@ -932,7 +968,10 @@
         {
           "required": true,
           "name": "Features",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         {
           "required": true,
@@ -993,12 +1032,18 @@
         {
           "required": false,
           "name": "Emails",
-          "type": "Collection(Edm.String)"
+          "type": "array",
+          "items": {
+            "type": "Edm.String"
+          }
         },
         {
           "required": false,
           "name": "AddressInfo",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+          }
         },
         {
           "required": false,
@@ -1013,7 +1058,10 @@
         {
           "required": true,
           "name": "Features",
-          "type": "Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+          }
         },
         {
           "required": true,
