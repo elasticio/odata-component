@@ -130,26 +130,27 @@ describe('Integration Test', function () {
           properties: {
             Address: {
               type: 'string',
-              required: true,
+              required: false,
               title: 'Address'
             },
             City: {
               type: 'object',
-              required: true,
+              required: false,
+              title: 'City',
               properties: {
                 Name: {
                   type: 'string',
-                  required: true,
+                  required: false,
                   title: 'Name'
                 },
                 CountryRegion: {
                   type: 'string',
-                  required: true,
+                  required: false,
                   title: 'CountryRegion'
                 },
                 Region: {
                   type: 'string',
-                  required: true,
+                  required: false,
                   title: 'Region'
                 }
               }
@@ -165,26 +166,27 @@ describe('Integration Test', function () {
         properties: {
           Address: {
             type: 'string',
-            required: true,
+            required: false,
             title: 'Address'
           },
           City: {
             type: 'object',
-            required: true,
+            required: false,
+            title: 'City',
             properties: {
               Name: {
                 type: 'string',
-                required: true,
+                required: false,
                 title: 'Name'
               },
               CountryRegion: {
                 type: 'string',
-                required: true,
+                required: false,
                 title: 'CountryRegion'
               },
               Region: {
                 type: 'string',
-                required: true,
+                required: false,
                 title: 'Region'
               }
             }
@@ -194,14 +196,14 @@ describe('Integration Test', function () {
         title: 'HomeAddress'
       });
 
-      expect(properties.FavoriteFeature).to.be.include({
+      expect(properties.FavoriteFeature).to.deep.include({
         type: 'string',
         required: true,
         enum: ['Feature1', 'Feature2', 'Feature3', 'Feature4'],
         title: 'FavoriteFeature'
       });
 
-      expect(properties.Features).to.be.include({
+      expect(properties.Features).to.deep.include({
         type: 'array',
         required: true,
         items: {
