@@ -28,9 +28,8 @@
   "dependencies": {
     "elasticio-node": "0.0.9",
     "elasticio-sailor-nodejs": "2.2.1",
-    "json-schema-generator": "2.0.6",
     "lodash": "^4.17.10",
-    "odata2openapi": "^1.2.4",
+    "odata2openapi": "git://github.com/elasticio/odata2openapi.git#eio-changes",
     "remove-leading-slash": "1.0.1",
     "remove-trailing-slash": "0.1.0",
     "request": "2.85.0"
