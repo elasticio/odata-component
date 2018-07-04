@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const fs = require('fs');
 const {getJsonSchemaForEntitySet} = require('../lib/commons/odata/extractCsdl');
 
-describe('OData Parsing Test Cases', function Dummy() {
+describe('OData Parsing Test Cases', function () {
   it('TripPin Person Schema', async function () {
     const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/TripPinMetadata.xml').toString();
 

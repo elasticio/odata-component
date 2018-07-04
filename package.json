@@ -13,8 +13,8 @@
     "lib"
   ],
   "scripts": {
-    "pretest": "echo 'nsp check' && eslint verifyCredentials.js module.js lib spec-integration --fix",
-    "test": "echo 'No unit tests! Run \"npm run integration-test\" to run integration tests.'",
+    "pretest": "echo 'nsp check' && eslint verifyCredentials.js module.js lib spec spec-integration --fix",
+    "test": "mocha spec",
     "integration-test": "mocha spec-integration"
   },
   "engines": {

@@ -11,5 +11,8 @@ module.exports = {
   },
   OData: {
     ODataClient: require('./lib/commons/odata/ODataClient')
+  },
+  JsonSchema: {
+    convertJsonSchemaToEioSchema: require('./lib/commons/jsonSchema/jsonSchemaConversionUtil').convertJsonSchemaToEioSchema
   }
 };
