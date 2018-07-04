@@ -139,5 +139,7 @@ describe('OData Parsing Test Cases', function () {
       },
       title: 'Features'
     });
+
+    expect(properties.BestFriend.required).to.be.false;
   });
 });
