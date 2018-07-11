@@ -21,6 +21,8 @@ function randomString() {
 
 describe('Integration Test', function () {
   let resourceServerUrl;
+  let username;
+  let password;
   let cfg;
   let emitter;
 
@@ -31,14 +33,20 @@ describe('Integration Test', function () {
       require('dotenv').config();
     }
 
-    resourceServerUrl = process.env.RESOURCE_SERVER_URL;
+    resourceServerUrl = process.env.BC_RESOURCE_SERVER_URL;
+    username = process.env.BC_USERNAME;
+    password = process.env.BC_WEB_SERVICE_ACCESS_KEY;
   });
 
   beforeEach(function () {
     cfg = {
       resourceServerUrl,
       auth: {
-        type: 'No Auth'
+        type: 'Basic Auth',
+        basic: {
+          username,
+          password
+        }
       }
     };
 
@@ -49,7 +57,7 @@ describe('Integration Test', function () {
 
   describe('Trigger Tests', function () {
     it('GetObjectsPolling', async function () {
-      cfg.objectType = 'People';
+      cfg.objectType = 'CustomerCardService';
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
       expect(testCall).to.be.rejectedWith(Error, 'No delta link provided.  Unable to record snapshot.');
@@ -68,14 +76,14 @@ describe('Integration Test', function () {
       it('List Objects', async function () {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
-        expect(objects).to.include('People');
+        expect(objects).to.include('CustomerCardService');
       });
     });
   });
 
   describe('Metadata Tests', function () {
     it('Build In Metadata', async function () {
-      cfg.objectType = 'People';
+      cfg.objectType = 'CustomerCardService';
       const metadata = await upsertObject.getMetaModel(cfg);
 
       expect(metadata.in).to.deep.equal(metadata.out);
@@ -84,16 +92,7 @@ describe('Integration Test', function () {
 
       const properties = metadata.in.properties;
 
-      expect(properties.UserName).to.deep.include({
-        type: 'string',
-        required: true,
-        title: 'UserName'
-      });
-      expect(properties.FirstName).to.deep.include({
-        type: 'string',
-        required: true,
-        title: 'FirstName'
-      });
+      expect(properties.No.required).to.be.false;
 
       // A full set of assertions are in the unit tests
     });
@@ -107,45 +106,43 @@ describe('Integration Test', function () {
   });
 
   describe('Action Tests', function () {
-    it('Upsert - Insert', async function () {
-      cfg.objectType = 'People';
-      const msg = {
+    it('Upsert - Insert, Update and Lookup', async function () {
+      cfg.objectType = 'CustomerCardService';
+      const insertName = `Automated Test ${randomString()}`;
+      const insertMsg = {
         body: {
-          FirstName: 'Jacob',
-          MiddleName: 'One',
-          LastName: 'Test',
-          UserName: randomString()
+          Name: insertName
         }
       };
 
-      await upsertObject.process.call(emitter, msg, cfg, {});
+      await upsertObject.process.call(emitter, insertMsg, cfg, {});
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
-      const result = emitter.emit.getCall(0).args[1];
-      expect(result.body.UserName).to.not.be.null;
-      expect(result.body.MiddleName).to.be.equal('One');
-    });
+      const insertResult = emitter.emit.getCall(0).args[1];
+      expect(insertResult.body.No).to.be.a('string');
+      expect(insertResult.body.No.length).to.be.above(0);
+      expect(insertResult.body.Name).to.be.equal(insertName);
 
-    it('Upsert - Update', async function () {
-      cfg.objectType = 'People';
-      const newMiddleName =  randomString();
-      const msg = {
+      const providedNo = insertResult.body.No;
+
+      const updateName = `${insertName} - Update`;
+      const updateMsg = {
         body: {
-          FirstName: 'Scott',
-          MiddleName: newMiddleName,
-          LastName: 'Ketchum',
-          UserName: 'scottketchum'
+          Name: updateName,
+          No: providedNo
         }
       };
-      await upsertObject.process.call(emitter, msg, cfg, {});
+
+      await upsertObject.process.call(emitter, updateMsg, cfg, {});
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
-      const result = emitter.emit.getCall(0).args[1];
-      expect(result.body.UserName).to.be.equal('scottketchum');
-      expect(result.body.MiddleName).to.be.equal(newMiddleName);
+      const upsertResult = emitter.emit.getCall(0).args[1];
+      expect(upsertResult.body.No).to.be.equal(providedNo);
+      expect(upsertResult.body.No.length).to.be.above(0);
+      expect(upsertResult.body.Name).to.be.equal(updateName);
     });
 
-    describe('Lookup Object Tests', function () {
+    xdescribe('Lookup Object Tests', function () {
       it('Success Lookup String', async function () {
         cfg.objectType = 'People';
         cfg.fieldName = 'UserName';

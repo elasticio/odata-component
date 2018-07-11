@@ -142,4 +142,13 @@ describe('OData Parsing Test Cases', function () {
 
     expect(properties.BestFriend.required).to.be.false;
   });
+
+  it('MS Business Central Contact Schema', async function () {
+    const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/TripPinMetadata.xml').toString();
+
+    const convertedResults = await getJsonSchemaForEntitySet(csdlString, 'CustomerCardService');
+    const properties = convertedResults.properties;
+
+    expect(properties.No.required).to.be.false;
+  });
 });
