@@ -171,3 +171,4 @@ run as admin. There may be problems if you use a password that is too long
 * A list of fields on all objects can be obtained by visiting http://devbc/nav/?table=2000000041
 * In NAV every entity which needs to be accessible via webservice fist, may need to be published: https://docs.microsoft.com/en-us/dynamics-nav/how-to--publish-a-web-service
 * KB article on enabling APIs: https://docs.microsoft.com/en-us/dynamics-nav/enabling-apis-for-dynamics-nav
+* Before you can create objects, you need to define and configure the rules for ID generation: https://docs.microsoft.com/en-us/dynamics-nav-app/ui-create-number-series
