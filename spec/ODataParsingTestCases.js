@@ -13,7 +13,7 @@ describe('OData Parsing Test Cases', function () {
 
     expect(properties.UserName).to.deep.include({
       type: 'string',
-      required: true,
+      required: false,
       title: 'UserName'
     });
     expect(properties.FirstName).to.deep.include({
@@ -144,7 +144,7 @@ describe('OData Parsing Test Cases', function () {
   });
 
   it('MS Business Central Contact Schema', async function () {
-    const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/TripPinMetadata.xml').toString();
+    const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/MsBusinessCentralWithCustomerCardService.xml').toString();
 
     const convertedResults = await getJsonSchemaForEntitySet(csdlString, 'CustomerCardService');
     const properties = convertedResults.properties;

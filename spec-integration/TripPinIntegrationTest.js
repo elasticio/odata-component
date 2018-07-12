@@ -86,7 +86,7 @@ describe('Integration Test', function () {
 
       expect(properties.UserName).to.deep.include({
         type: 'string',
-        required: true,
+        required: false,
         title: 'UserName'
       });
       expect(properties.FirstName).to.deep.include({
@@ -121,7 +121,7 @@ describe('Integration Test', function () {
       await upsertObject.process.call(emitter, msg, cfg, {});
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
-      const result = emitter.emit.getCall(0).args[1];
+      const result = emitter.emit.withArgs('data').getCall(0).args[1];
       expect(result.body.UserName).to.not.be.null;
       expect(result.body.MiddleName).to.be.equal('One');
     });
@@ -140,7 +140,7 @@ describe('Integration Test', function () {
       await upsertObject.process.call(emitter, msg, cfg, {});
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
-      const result = emitter.emit.getCall(0).args[1];
+      const result = emitter.emit.withArgs('data').getCall(0).args[1];
       expect(result.body.UserName).to.be.equal('scottketchum');
       expect(result.body.MiddleName).to.be.equal(newMiddleName);
     });
