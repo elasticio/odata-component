@@ -150,7 +150,6 @@ describe('Integration Test', function () {
         cfg.objectType = 'People';
         cfg.fieldName = 'UserName';
         cfg.allowEmptyCriteria = true;
-        cfg.castToString = true;
 
         const personUserName = process.env.TRIPPIN_CONTACT_TO_LOOKUP_ID;
         const expectedPersonFirstName = process.env.TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME;
@@ -164,7 +163,7 @@ describe('Integration Test', function () {
         await lookupObject.process.call(emitter, msg, cfg);
 
         expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
-        const result = emitter.emit.getCall(0).args[1];
+        const result = emitter.emit.withArgs('data').getCall(0).args[1];
         expect(result.body.UserName).to.be.equal(personUserName);
         expect(result.body.FirstName).to.be.equal(expectedPersonFirstName);
       });

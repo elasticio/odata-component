@@ -80,16 +80,6 @@
             "false": "No"
           },
           "note": "Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?"
-        },
-        "castToString": {
-          "label": "Cast Field To String",
-          "required": true,
-          "viewClass": "SelectView",
-          "prompt": "Select a value",
-          "model": {
-            "true": "Yes",
-            "false": "No"
-          }
         }
       },
       "dynamicMetadata": true
