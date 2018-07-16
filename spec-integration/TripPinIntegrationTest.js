@@ -107,7 +107,7 @@ describe('Integration Test', function () {
   });
 
   describe('Action Tests', function () {
-    it('Upsert - Insert', async function () {
+    xit('Upsert - Insert', async function () {
       cfg.objectType = 'People';
       const msg = {
         body: {
@@ -126,7 +126,7 @@ describe('Integration Test', function () {
       expect(result.body.MiddleName).to.be.equal('One');
     });
 
-    it('Upsert - Update', async function () {
+    xit('Upsert - Update', async function () {
       cfg.objectType = 'People';
       const newMiddleName =  randomString();
       const msg = {
