@@ -33,6 +33,24 @@
       "metadata": {
         "out": {}
       }
+    },
+    "exportObjects": {
+      "main": "./lib/triggers/exportObjects.js",
+      "type": "polling",
+      "title": "Export All Objects",
+      "description": "Export all available objects of specific type available at the time of execution",
+      "fields": {
+        "objectType": {
+          "label": "Object type to export",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      },
+      "metadata": {
+        "out": {}
+      }
     }
   },
   "actions": {

@@ -22,6 +22,10 @@ All Objects Programmatically Detectable Covered.  Time range options not
 supported, Standardized `isNew`,`createdOn` and `modifiedOn` not included in
 output.
 
+## Export Objects
+Export all objects of the selected type that is available by the time of the execution.
+This trigger will fetch objects and emit them one-by-one.
+
 # Actions
 ## Lookup Object by Field(s)
 Given a set of criteria which matches exactly one record, find that matching record.
