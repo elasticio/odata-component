@@ -87,7 +87,7 @@ describe('Integration Test', function () {
       expect(properties.UserName).to.deep.include({
         type: 'string',
         required: false,
-        title: 'UserName'
+        title: 'UserName (Primary Key)'
       });
       expect(properties.FirstName).to.deep.include({
         type: 'string',
