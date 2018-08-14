@@ -43,7 +43,7 @@
       "dynamicMetadata": true,
       "fields": {
         "objectType": {
-          "label": "Object type to fetch",
+          "label": "Object Type to Upsert",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
@@ -57,7 +57,7 @@
       "description": "Given a set of criteria which matches exactly one record, find that matching record.",
       "fields": {
         "objectType": {
-          "label": "Object Type to Fetch",
+          "label": "Object Type to Lookup",
           "required": true,
           "viewClass": "SelectView",
           "model": "getObjects",
