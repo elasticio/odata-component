@@ -76,8 +76,8 @@
           "viewClass": "SelectView",
           "prompt": "Select a value",
           "model": {
-            "true": "Yes",
-            "false": "No"
+            "1": "Yes",
+            "0": "No"
           },
           "note": "Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?"
         }

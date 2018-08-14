@@ -149,7 +149,7 @@ describe('Integration Test', function () {
       it('Success Lookup String', async function () {
         cfg.objectType = 'People';
         cfg.fieldName = 'UserName';
-        cfg.allowEmptyCriteria = 'true';
+        cfg.allowEmptyCriteria = '1';
 
         const personUserName = process.env.TRIPPIN_CONTACT_TO_LOOKUP_ID;
         const expectedPersonFirstName = process.env.TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME;
