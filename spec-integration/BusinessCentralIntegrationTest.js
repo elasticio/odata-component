@@ -146,7 +146,7 @@ describe('Integration Test', function () {
       it('Success Lookup String', async function () {
         cfg.objectType = 'CustomerCardService';
         cfg.fieldName = 'Name';
-        cfg.allowEmptyCriteria = true;
+        cfg.allowEmptyCriteria = 'true';
 
         const customerName = process.env.BC_CUSTOMER_TO_LOOKUP_NAME;
         const expectedCustomerId = process.env.BC_CUSTOMER_TO_LOOKUP_ID;
@@ -163,6 +163,39 @@ describe('Integration Test', function () {
         const result = emitter.emit.withArgs('data').getCall(0).args[1];
         expect(result.body.Name).to.be.equal(customerName);
         expect(result.body.No).to.be.equal(expectedCustomerId);
+      });
+
+      it('Lookup Empty Allowed', async function () {
+        cfg.objectType = 'CustomerCardService';
+        cfg.fieldName = 'Name';
+        cfg.allowEmptyCriteria = 'true';
+
+        const msg = {
+          body: {
+            Name: ''
+          }
+        };
+
+        await lookupObject.process.call(emitter, msg, cfg, {});
+
+        expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
+        const result = emitter.emit.withArgs('data').getCall(0).args[1];
+        expect(result.body).to.be.equal({});
+      });
+
+      it('Lookup Empty Not Allowed', async function () {
+        cfg.objectType = 'CustomerCardService';
+        cfg.fieldName = 'Name';
+        cfg.allowEmptyCriteria = 'false';
+
+        const msg = {
+          body: {
+            Name: ''
+          }
+        };
+
+        const testCall = lookupObject.process.call(emitter, msg, cfg, {});
+        expect(testCall).to.be.rejectedWith(Error);
       });
     });
   });
