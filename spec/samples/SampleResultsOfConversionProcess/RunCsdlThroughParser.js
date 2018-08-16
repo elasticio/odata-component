@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const {parse, convert} = require('@elasticiodev/odata2openapi');
+const {parse, convert} = require('odata2openapi');
 
 const rawCsdlFiles = fs.readdirSync('../rawCsdlFiles');
 Promise.all(rawCsdlFiles.map(async(file) => {
