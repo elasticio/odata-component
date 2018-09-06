@@ -38,8 +38,8 @@
   "actions": {
     "upsertObject": {
       "main": "./lib/actions/upsertObject.js",
-      "title": "Upsert Entry",
-      "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+      "title": "Upsert Object By ID",
+      "description": "Update an existing entry with the id provided.  Otherwise create a new entry.",
       "dynamicMetadata": true,
       "fields": {
         "objectType": {
@@ -54,7 +54,7 @@
     "lookupObjectByFields": {
       "main": "./lib/actions/lookupObjectByFields.js",
       "title": "Lookup Object By Field",
-      "description": "Given a set of criteria which matches exactly one record, find that matching record.",
+      "description": "Given a field and a field value that matches exactly one record, find that matching record.",
       "fields": {
         "objectType": {
           "label": "Object Type to Lookup",
