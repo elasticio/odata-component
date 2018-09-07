@@ -13,8 +13,8 @@
     "lib"
   ],
   "scripts": {
-    "pretest": "echo 'nsp check' && eslint verifyCredentials.js module.js lib spec-integration --fix",
-    "test": "echo 'No unit tests! Run \"npm run integration-test\" to run integration tests.'",
+    "pretest": "echo 'nsp check' && eslint verifyCredentials.js module.js lib spec spec-integration --fix",
+    "test": "mocha spec",
     "integration-test": "mocha spec-integration"
   },
   "engines": {
@@ -26,9 +26,10 @@
     "Connector"
   ],
   "dependencies": {
+    "odata2openapi": "1.3.0",
     "elasticio-node": "0.0.9",
     "elasticio-sailor-nodejs": "2.2.1",
-    "json-schema-generator": "2.0.6",
+    "lodash": "^4.17.10",
     "remove-leading-slash": "1.0.1",
     "remove-trailing-slash": "0.1.0",
     "request": "2.85.0"
