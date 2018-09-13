@@ -24,7 +24,7 @@ This trigger relies on the service implementing OData's delta links.  Not all se
 
 ### Technical Notes
 * Time range options are not supported. 
-* *Standardized `isNew`,`createdOn` and `modifiedOn` not included in
+* Standardized `isNew`,`createdOn` and `modifiedOn` not included in
 output.
 * This trigger could not be tested directly but can the code path can be tested through dynamics CRM component
 * This trigger will throw an exception if no delta links are provided.
@@ -69,17 +69,18 @@ There are three configuration drop downs:
 ```
 IF empty field value AND allowEmptyCriteria THEN 
   emit empty object
-CONST results = Fetch objects with value for field
-IF results.length !== 1 THEN
-  Throw exception
-emit result
+ELSE  
+  CONST results = Fetch objects with value for field
+  IF results.length !== 1 THEN
+    Throw exception
+  emit result
 ```
 * One API call per invocation
 
 ## Upsert Object By ID
 Update an existing entry with the id provided.  Otherwise create a new entry.
 
-All types of objects programmatically detectable are covered.  When selecting this trigger, the first input that must be configured is **Object type to fetch`.  This dropdown when opened will produce a list of all object types on the system. 
+All types of objects programmatically detectable are covered.  When selecting this trigger, the first input that must be configured is **Object type to fetch**.  This dropdown when opened will produce a list of all object types on the system. 
 
 ### Technical Notes
 * All Objects Programmatically Detectable Covered. 
@@ -109,6 +110,12 @@ END
 * Limitation: [Does not work if the system can create objects based on an external key](https://github.com/elasticio/odata-component/issues/26)
 * TripPin does not work for updating/creating information.
 * One API call per invocation
+
+# Other Limitations
+* [Sometimes there are false positive when verifying credentials](https://github.com/elasticio/odata-component/issues/25)
+* [List of selectable object types for an action/trigger don't reflect that some object types are readonly or not modifiable/deletable](https://github.com/elasticio/odata-component/issues/20)
+* [Metadata does not expose the ids of linked objects as fields](https://github.com/elasticio/odata-component/issues/19)
+* Not successfully tested on local agent
 
 # Configuration Info
 ## Required environment variables
