@@ -18,7 +18,7 @@ Supports the following forms:
 ## Get Objects Polling 
 Get objects which have recently been modified or created.
 
-All types of objects programmatically detectable are covered.  When selecting this trigger, the first input that must be configured is **Object type to fetch`.  This dropdown when opened will produce a list of all object types on the system.  
+All types of objects programmatically detectable are covered.  When selecting this trigger, the first input that must be configured is **Object type to fetch**.  This dropdown when opened will produce a list of all object types on the system.  
 
 This trigger relies on the service implementing OData's delta links.  Not all services (e.g. TripPin and NAV/Business Center) support this.
 
@@ -138,13 +138,18 @@ Resources
 * [Request A Key To Identify Yourself to Trippin](http://www.odata.org/odata-services/service-usages/request-key-tutorial/)
 
 ## NAV/Business Central
-
+Instructions are in [`documentation/NAV - Business Central Instructions`](documentation/NAV%20-%20Business%20Central%20Instructions.md).
 
 ## Running Integration Tests
 For the local testing (e.g. spec-integration) the following environment variables are required:
-* `RESOURCE_SERVER_URL` - Obtain a sample TripPin key and place the provided URL with key into this variable
-* `CONTACT_TO_LOOKUP_FIRST_NAME` - Sample contact name to lookup
-* `CONTACT_TO_LOOKUP_ID` - Sample contact id to lookup
+* `TRIPPIN_RESOURCE_SERVER_URL` - Obtain a sample TripPin key and place the provided URL with key into this variable
+* `TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME` - Sample contact name to lookup
+* `TRIPPIN_CONTACT_TO_LOOKUP_ID` - Sample contact id to lookup
+* `BC_RESOURCE_SERVER_URL` - ="https://IncludeYourKeyHere>:7048/nav/odatav4"
+  BC_USERNAME="NAVADMIN"
+  BC_WEB_SERVICE_ACCESS_KEY="IncludeYourKeyHere>"
+  BC_CUSTOMER_TO_LOOKUP_NAME="UniqueValue"
+  BC_CUSTOMER_TO_LOOKUP_ID="12"
 
 These environment variables must be placed in a [`.env`
 file](https://www.npmjs.com/package/dotenv).  The integration tests can be run
@@ -154,7 +159,14 @@ running capabilities of your IDE.  The integration tests are located in `spec-in
 ### Example .env file
 *(Replace `<IncludeYourKeyHere>` with a valid key)*
 ```
-RESOURCE_SERVER_URL="http://services.odata.org/TripPinRESTierService/(S(<IncludeYourKeyHere>))/"
-CONTACT_TO_LOOKUP_FIRST_NAME=Russell
-CONTACT_TO_LOOKUP_ID=russellwhyte
+TRIPPIN_RESOURCE_SERVER_URL="http://services.odata.org/TripPinRESTierService/(S(IncludeYourKeyHere>)/"
+TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME=Russell
+TRIPPIN_CONTACT_TO_LOOKUP_ID=russellwhyte
+
+BC_RESOURCE_SERVER_URL="https://<IncludeYourKeyHere>:7048/nav/odatav4"
+BC_USERNAME="NAVADMIN"
+BC_WEB_SERVICE_ACCESS_KEY="<IncludeYourKeyHere>"
+BC_CUSTOMER_TO_LOOKUP_NAME="UniqueValue"
+BC_CUSTOMER_TO_LOOKUP_ID="12"
+
 ```

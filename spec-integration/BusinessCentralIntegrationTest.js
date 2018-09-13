@@ -25,6 +25,7 @@ describe('Integration Test', function () {
   let password;
   let cfg;
   let emitter;
+  let objectType;
 
   this.timeout(30000);
 
@@ -36,6 +37,7 @@ describe('Integration Test', function () {
     resourceServerUrl = process.env.BC_RESOURCE_SERVER_URL;
     username = process.env.BC_USERNAME;
     password = process.env.BC_WEB_SERVICE_ACCESS_KEY;
+    objectType = process.env.BC_OBJECT_TYPE;
   });
 
   beforeEach(function () {
@@ -57,7 +59,7 @@ describe('Integration Test', function () {
 
   describe('Trigger Tests', function () {
     it('GetObjectsPolling', async function () {
-      cfg.objectType = 'CustomerCardService';
+      cfg.objectType = objectType;
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
       expect(testCall).to.be.rejectedWith(Error);
@@ -73,14 +75,14 @@ describe('Integration Test', function () {
       it('List Objects', async function () {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
-        expect(objects).to.include('CustomerCardService');
+        expect(objects).to.include(objectType);
       });
     });
   });
 
   describe('Metadata Tests', function () {
     it('Build In Metadata', async function () {
-      cfg.objectType = 'CustomerCardService';
+      cfg.objectType = objectType;
       const metadata = await upsertObject.getMetaModel(cfg);
 
       expect(metadata.in).to.deep.equal(metadata.out);
@@ -104,7 +106,7 @@ describe('Integration Test', function () {
 
   describe('Action Tests', function () {
     it('Upsert - Insert, Update and Lookup', async function () {
-      cfg.objectType = 'CustomerCardService';
+      cfg.objectType = objectType;
       const insertName = `Automated Test ${randomString()}`;
       const insertMsg = {
         body: {
@@ -144,7 +146,7 @@ describe('Integration Test', function () {
 
     describe('Lookup Object Tests', function () {
       it('Success Lookup String', async function () {
-        cfg.objectType = 'CustomerCardService';
+        cfg.objectType = objectType;
         cfg.fieldName = 'Name';
         cfg.allowEmptyCriteria = '1';
 
@@ -166,7 +168,7 @@ describe('Integration Test', function () {
       });
 
       it('Lookup Empty Allowed', async function () {
-        cfg.objectType = 'CustomerCardService';
+        cfg.objectType = objectType;
         cfg.fieldName = 'Name';
         cfg.allowEmptyCriteria = '1';
 
@@ -184,7 +186,7 @@ describe('Integration Test', function () {
       });
 
       it('Lookup Empty Not Allowed', async function () {
-        cfg.objectType = 'CustomerCardService';
+        cfg.objectType = objectType;
         cfg.fieldName = 'Name';
         cfg.allowEmptyCriteria = '0';
 
