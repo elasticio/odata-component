@@ -60,7 +60,7 @@ There are three configuration drop downs:
   "version": 1,   // Protect against schema revisions
   "fieldName": "Value selected from Name of Field to Match",   // Protect against changing config values
   "objectType": "Value selected from Object Type to Lookup",   // Protect against changing config value
-  "operationType": "lookupObject",    // Protect against chainging action
+  "operationType": "lookupObject",    // Protect against changing action
   "wrapFieldInQuotes": true/false   // Information learned from OData metadata document to correctly form request
 
 }
@@ -91,7 +91,7 @@ All types of objects programmatically detectable are covered.  When selecting th
 {
   "version": 1,   // Protect against schema revisions
   "objectType": "Value selected from Object Type to Lookup",   // Protect against changing config value
-  "operationType": "upsert",    // Protect against chainging action
+  "operationType": "upsert",    // Protect against changing action
   "wrapFieldInQuotes": true/false   // Information learned from OData metadata document to correctly form request
 
 }
@@ -145,11 +145,17 @@ For the local testing (e.g. spec-integration) the following environment variable
 * `TRIPPIN_RESOURCE_SERVER_URL` - Obtain a sample TripPin key and place the provided URL with key into this variable
 * `TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME` - Sample contact name to lookup
 * `TRIPPIN_CONTACT_TO_LOOKUP_ID` - Sample contact id to lookup
-* `BC_RESOURCE_SERVER_URL` - ="https://IncludeYourKeyHere>:7048/nav/odatav4"
-  BC_USERNAME="NAVADMIN"
-  BC_WEB_SERVICE_ACCESS_KEY="IncludeYourKeyHere>"
-  BC_CUSTOMER_TO_LOOKUP_NAME="UniqueValue"
-  BC_CUSTOMER_TO_LOOKUP_ID="12"
+
+
+This segment of tests are designed to run against Microsoft NAV/Business Central.  In theory they should work on any OData system that uses HTTP Basic auth for authentication and has an object with one key and one modifiable string field:
+* `BC_RESOURCE_SERVER_URL` - Url to the root of the OData service on your instance
+* `BC_USERNAME="NAVADMIN"` - Username for authentication
+* `BC_WEB_SERVICE_ACCESS_KEY` - Password for authentication
+* `BC_TO_LOOKUP_FIELD_NAME` - Name of modifiable string field
+* `BC_PRIMARY_KEY` - Primary Key of the object
+* `BC_TO_LOOKUP_FIELD_VALUE` - Sample value of string field that should match exactly one result
+* `BC_TO_LOOKUP_ID` - ID value of the object with field value of `BC_TO_LOOKUP_FIELD_VALUE`
+* `BC_OBJECT_TYPE` - Object type to test
 
 These environment variables must be placed in a [`.env`
 file](https://www.npmjs.com/package/dotenv).  The integration tests can be run
@@ -157,16 +163,18 @@ through npm with the cli command `npm run integration-test` or by the mocha test
 running capabilities of your IDE.  The integration tests are located in `spec-integration`.
 
 ### Example .env file
-*(Replace `<IncludeYourKeyHere>` with a valid key)*
+*(Replace `<IncludeYourValueHere>` with a value specific for your system)*
 ```
-TRIPPIN_RESOURCE_SERVER_URL="http://services.odata.org/TripPinRESTierService/(S(IncludeYourKeyHere>)/"
+TRIPPIN_RESOURCE_SERVER_URL="http://services.odata.org/TripPinRESTierService/<IncludeYourValueHere>/"
 TRIPPIN_CONTACT_TO_LOOKUP_FIRST_NAME=Russell
 TRIPPIN_CONTACT_TO_LOOKUP_ID=russellwhyte
 
-BC_RESOURCE_SERVER_URL="https://<IncludeYourKeyHere>:7048/nav/odatav4"
+BC_RESOURCE_SERVER_URL="https://<IncludeYourValueHere>:7048/nav/odatav4"
 BC_USERNAME="NAVADMIN"
-BC_WEB_SERVICE_ACCESS_KEY="<IncludeYourKeyHere>"
-BC_CUSTOMER_TO_LOOKUP_NAME="UniqueValue"
-BC_CUSTOMER_TO_LOOKUP_ID="12"
-
+BC_WEB_SERVICE_ACCESS_KEY="<IncludeYourValueHere>"
+BC_TO_LOOKUP_FIELD_NAME="Name"
+BC_PRIMARY_KEY="No"
+BC_TO_LOOKUP_FIELD_VALUE="UniqueValue"
+BC_TO_LOOKUP_ID="12"
+BC_OBJECT_TYPE="CustomerCardService"
 ```
