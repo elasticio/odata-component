@@ -25,6 +25,9 @@ describe('Integration Test', function () {
   let password;
   let cfg;
   let emitter;
+  let objectType;
+  let lookupFieldValue;
+  let upsertKey;
 
   this.timeout(30000);
 
@@ -36,6 +39,9 @@ describe('Integration Test', function () {
     resourceServerUrl = process.env.BC_RESOURCE_SERVER_URL;
     username = process.env.BC_USERNAME;
     password = process.env.BC_WEB_SERVICE_ACCESS_KEY;
+    objectType = process.env.BC_OBJECT_TYPE;
+    lookupFieldValue = process.env.BC_TO_LOOKUP_FIELD_NAME;
+    upsertKey = process.env.BC_PRIMARY_KEY;
   });
 
   beforeEach(function () {
@@ -57,7 +63,7 @@ describe('Integration Test', function () {
 
   describe('Trigger Tests', function () {
     it('GetObjectsPolling', async function () {
-      cfg.objectType = 'CustomerCardService';
+      cfg.objectType = objectType;
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
       expect(testCall).to.be.rejectedWith(Error);
@@ -73,14 +79,14 @@ describe('Integration Test', function () {
       it('List Objects', async function () {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
-        expect(objects).to.include('CustomerCardService');
+        expect(objects).to.include(objectType);
       });
     });
   });
 
   describe('Metadata Tests', function () {
     it('Build In Metadata', async function () {
-      cfg.objectType = 'CustomerCardService';
+      cfg.objectType = objectType;
       const metadata = await upsertObject.getMetaModel(cfg);
 
       expect(metadata.in).to.deep.equal(metadata.out);
@@ -89,7 +95,7 @@ describe('Integration Test', function () {
 
       const properties = metadata.in.properties;
 
-      expect(properties.No.required).to.be.false;
+      expect(properties[upsertKey].required).to.be.false;
 
       // A full set of assertions are in the unit tests
     });
@@ -104,11 +110,11 @@ describe('Integration Test', function () {
 
   describe('Action Tests', function () {
     it('Upsert - Insert, Update and Lookup', async function () {
-      cfg.objectType = 'CustomerCardService';
-      const insertName = `Automated Test ${randomString()}`;
+      cfg.objectType = objectType;
+      const insertFieldValue = `Automated Test ${randomString()}`;
       const insertMsg = {
         body: {
-          Name: insertName
+          [lookupFieldValue]: insertFieldValue
         }
       };
 
@@ -116,17 +122,17 @@ describe('Integration Test', function () {
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
       const insertResult = emitter.emit.withArgs('data').getCall(0).args[1];
-      expect(insertResult.body.No).to.be.a('string');
-      expect(insertResult.body.No.length).to.be.above(0);
-      expect(insertResult.body.Name).to.be.equal(insertName);
+      expect(insertResult.body[upsertKey]).to.be.a('string');
+      expect(insertResult.body[upsertKey].length).to.be.above(0);
+      expect(insertResult.body[lookupFieldValue]).to.be.equal(insertFieldValue);
 
-      const providedNo = insertResult.body.No;
+      const providedKey = insertResult.body[upsertKey];
 
-      const updateName = `${insertName} - Update`;
+      const updateField = `${insertFieldValue} - Update`;
       const updateMsg = {
         body: {
-          Name: updateName,
-          No: providedNo
+          [lookupFieldValue]: updateField,
+          [upsertKey]: providedKey
         }
       };
       emitter = {
@@ -137,23 +143,23 @@ describe('Integration Test', function () {
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
       const upsertResult = emitter.emit.withArgs('data').getCall(0).args[1];
-      expect(upsertResult.body.No).to.be.equal(providedNo);
-      expect(upsertResult.body.No.length).to.be.above(0);
-      expect(upsertResult.body.Name).to.be.equal(updateName);
+      expect(upsertResult.body[upsertKey]).to.be.equal(providedKey);
+      expect(upsertResult.body[upsertKey].length).to.be.above(0);
+      expect(upsertResult.body[lookupFieldValue]).to.be.equal(updateField);
     });
 
     describe('Lookup Object Tests', function () {
       it('Success Lookup String', async function () {
-        cfg.objectType = 'CustomerCardService';
-        cfg.fieldName = 'Name';
+        cfg.objectType = objectType;
+        cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '1';
 
-        const customerName = process.env.BC_CUSTOMER_TO_LOOKUP_NAME;
-        const expectedCustomerId = process.env.BC_CUSTOMER_TO_LOOKUP_ID;
+        const lookupValue = process.env.BC_TO_LOOKUP_FIELD_VALUE;
+        const expectedId = process.env.BC_TO_LOOKUP_ID;
 
         const msg = {
           body: {
-            Name: customerName
+            [lookupFieldValue]: lookupValue
           }
         };
 
@@ -161,18 +167,18 @@ describe('Integration Test', function () {
 
         expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
         const result = emitter.emit.withArgs('data').getCall(0).args[1];
-        expect(result.body.Name).to.be.equal(customerName);
-        expect(result.body.No).to.be.equal(expectedCustomerId);
+        expect(result.body[lookupFieldValue]).to.be.equal(lookupValue);
+        expect(result.body.No).to.be.equal(expectedId);
       });
 
       it('Lookup Empty Allowed', async function () {
-        cfg.objectType = 'CustomerCardService';
-        cfg.fieldName = 'Name';
+        cfg.objectType = objectType;
+        cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '1';
 
         const msg = {
           body: {
-            Name: ''
+            [lookupFieldValue]: ''
           }
         };
 
@@ -184,13 +190,13 @@ describe('Integration Test', function () {
       });
 
       it('Lookup Empty Not Allowed', async function () {
-        cfg.objectType = 'CustomerCardService';
-        cfg.fieldName = 'Name';
+        cfg.objectType = objectType;
+        cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '0';
 
         const msg = {
           body: {
-            Name: ''
+            [lookupFieldValue]: ''
           }
         };
 
