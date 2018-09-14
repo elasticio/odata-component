@@ -43,8 +43,8 @@ output.
 Given a field and a field value that matches exactly one record, find that matching record.
 
 There are three configuration drop downs:
-* **Object Type to Lookup**: All types of objects programmatically detectable are covered.  This dro pdown when opened will produce a list of all object types on the system.
-* **Name of Field to Match**: Select a field to compare against.  Currently, this will return a list of all fields on the object.  
+* **Object Type to Lookup**: All types of objects programmatically detectable are covered.  This drop down when opened will produce a list of all object types on the system.
+* **Name of Field to Match**: Select a field to compare against.  Currently, this will return a list of all fields on the object selected in the `Object Type to Lookup` dropdown.  
 * **Allow Empty Criteria**: Should the lookup operation be skipped (i.e. this component becomes a No-op which emits the empty message) if all criteria are empty?
 
 ### Technical Notes
