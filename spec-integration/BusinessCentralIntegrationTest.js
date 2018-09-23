@@ -12,6 +12,7 @@ const sinon = require('sinon');
 
 const upsertObject = require('../lib/actions/upsertObject');
 const lookupObject = require('../lib/actions/lookupObjectByFields');
+const lookupObjects = require('../lib/actions/lookupObjects');
 const getObjectsPolling = require('../lib/triggers/getObjectsPolling');
 const verifyCredentials = require('../verifyCredentials');
 
@@ -26,7 +27,7 @@ describe('Integration Test', function () {
   let cfg;
   let emitter;
   let objectType;
-  let lookupFieldValue;
+  let lookupFieldName;
   let upsertKey;
 
   this.timeout(30000);
@@ -40,7 +41,7 @@ describe('Integration Test', function () {
     username = process.env.BC_USERNAME;
     password = process.env.BC_WEB_SERVICE_ACCESS_KEY;
     objectType = process.env.BC_OBJECT_TYPE;
-    lookupFieldValue = process.env.BC_TO_LOOKUP_FIELD_NAME;
+    lookupFieldName = process.env.BC_TO_LOOKUP_FIELD_NAME;
     upsertKey = process.env.BC_PRIMARY_KEY;
   });
 
@@ -99,6 +100,26 @@ describe('Integration Test', function () {
 
       // A full set of assertions are in the unit tests
     });
+
+    it('Lookup Object Metadata', async function() {
+      cfg.objectType = objectType;
+      cfg.fieldName = lookupFieldName;
+      cfg.allowEmptyCriteria = '0';
+
+      const noEmptyMetadata = await lookupObject.getMetaModel(cfg);
+      expect(noEmptyMetadata.in.properties[lookupFieldName].required).to.be.true;
+
+      cfg.allowEmptyCriteria = '1';
+      const allowEmptyMetadata = await lookupObject.getMetaModel(cfg);
+      expect(allowEmptyMetadata.in.properties[lookupFieldName].required).to.be.false;
+    });
+
+    it('Lookup Objects Metadata', async function () {
+      cfg.objectType = objectType;
+      const metadata = await lookupObjects.getMetaModel(cfg);
+
+      expect(metadata.in.properties.fieldName.enum).to.contain.all.members([upsertKey, lookupFieldName]);
+    });
   });
 
   describe('Verify Credential Tests', function () {
@@ -114,7 +135,7 @@ describe('Integration Test', function () {
       const insertFieldValue = `Automated Test ${randomString()}`;
       const insertMsg = {
         body: {
-          [lookupFieldValue]: insertFieldValue
+          [lookupFieldName]: insertFieldValue
         }
       };
 
@@ -124,14 +145,14 @@ describe('Integration Test', function () {
       const insertResult = emitter.emit.withArgs('data').getCall(0).args[1];
       expect(insertResult.body[upsertKey]).to.be.a('string');
       expect(insertResult.body[upsertKey].length).to.be.above(0);
-      expect(insertResult.body[lookupFieldValue]).to.be.equal(insertFieldValue);
+      expect(insertResult.body[lookupFieldName]).to.be.equal(insertFieldValue);
 
       const providedKey = insertResult.body[upsertKey];
 
       const updateField = `${insertFieldValue} - Update`;
       const updateMsg = {
         body: {
-          [lookupFieldValue]: updateField,
+          [lookupFieldName]: updateField,
           [upsertKey]: providedKey
         }
       };
@@ -145,13 +166,13 @@ describe('Integration Test', function () {
       const upsertResult = emitter.emit.withArgs('data').getCall(0).args[1];
       expect(upsertResult.body[upsertKey]).to.be.equal(providedKey);
       expect(upsertResult.body[upsertKey].length).to.be.above(0);
-      expect(upsertResult.body[lookupFieldValue]).to.be.equal(updateField);
+      expect(upsertResult.body[lookupFieldName]).to.be.equal(updateField);
     });
 
     describe('Lookup Object Tests', function () {
       it('Success Lookup String', async function () {
         cfg.objectType = objectType;
-        cfg.fieldName = lookupFieldValue;
+        cfg.fieldName = lookupFieldName;
         cfg.allowEmptyCriteria = '1';
 
         const lookupValue = process.env.BC_TO_LOOKUP_FIELD_VALUE;
@@ -159,7 +180,7 @@ describe('Integration Test', function () {
 
         const msg = {
           body: {
-            [lookupFieldValue]: lookupValue
+            [lookupFieldName]: lookupValue
           }
         };
 
@@ -167,18 +188,18 @@ describe('Integration Test', function () {
 
         expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
         const result = emitter.emit.withArgs('data').getCall(0).args[1];
-        expect(result.body[lookupFieldValue]).to.be.equal(lookupValue);
+        expect(result.body[lookupFieldName]).to.be.equal(lookupValue);
         expect(result.body.No).to.be.equal(expectedId);
       });
 
       it('Lookup Empty Allowed', async function () {
         cfg.objectType = objectType;
-        cfg.fieldName = lookupFieldValue;
+        cfg.fieldName = lookupFieldName;
         cfg.allowEmptyCriteria = '1';
 
         const msg = {
           body: {
-            [lookupFieldValue]: ''
+            [lookupFieldName]: ''
           }
         };
 
@@ -191,18 +212,54 @@ describe('Integration Test', function () {
 
       it('Lookup Empty Not Allowed', async function () {
         cfg.objectType = objectType;
-        cfg.fieldName = lookupFieldValue;
+        cfg.fieldName = lookupFieldName;
         cfg.allowEmptyCriteria = '0';
 
         const msg = {
           body: {
-            [lookupFieldValue]: ''
+            [lookupFieldName]: ''
           }
         };
 
         const testCall = lookupObject.process.call(emitter, msg, cfg, {});
         expect(testCall).to.be.rejectedWith(Error);
       });
+
+      describe('Lookup Objects Tests', function() {
+        it('Lookup Double', async function() {
+          cfg.objectType = objectType;
+
+          const msg = {
+            body: {
+              fieldName: lookupFieldName,
+              fieldValue: process.env.BC_TO_LOOKUP_OBJECTS_DOUBLE_VALUE
+            }
+          };
+
+          await lookupObjects.process.call(emitter, msg, cfg, {});
+
+          expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
+          const result = emitter.emit.withArgs('data').getCall(0).args[1];
+          expect(result.body.values.length).to.be.equal(2);
+        });
+
+        it('Lookup Zero', async function() {
+          cfg.objectType = objectType;
+
+          const msg = {
+            body: {
+              fieldName: lookupFieldName,
+              fieldValue: process.env.BC_TO_LOOKUP_OBJECTS_NONE_VALUE
+            }
+          };
+
+          await lookupObjects.process.call(emitter, msg, cfg, {});
+
+          expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
+          const result = emitter.emit.withArgs('data').getCall(0).args[1];
+          expect(result.body.values.length).to.be.equal(0);
+        });
+      })
     });
   });
 });

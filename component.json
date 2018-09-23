@@ -83,6 +83,21 @@
         }
       },
       "dynamicMetadata": true
+    },
+    "lookupObjects": {
+      "main": "./lib/actions/lookupObjects.js",
+      "title": "Lookup Objects By Matching Value",
+      "description": "Given a field and a field value return all records matching that value",
+      "fields": {
+        "objectType": {
+          "label": "Object Type to Lookup",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        }
+      },
+      "dynamicMetadata": true
     }
   }
 }
