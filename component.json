@@ -12,6 +12,18 @@
         "label": "The URL of the OData service to consume",
         "required": true,
         "placeholder": "https://example.com/odataService"
+      },
+      "odataVersion": {
+        "viewClass": "SelectView",
+        "label": "The OData Version of the Service Used",
+        "required": false,
+        "prompt": "Select a Version",
+        "model": {
+          "1": "V1",
+          "2": "V2",
+          "3": "V3",
+          "4": "V4"
+        }
       }
     }
   },
@@ -53,13 +65,6 @@
           "viewClass": "SelectView",
           "model": "getTimestampFields",
           "prompt": "Select a field"
-        },
-        "timezone": {
-          "label": "Server Timezone",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getTimezones",
-          "prompt": "Select a timezone"
         }
       },
       "metadata": {
