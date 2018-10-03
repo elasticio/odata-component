@@ -19,7 +19,7 @@
     "getObjectsPolling": {
       "main": "./lib/triggers/getObjectsPolling.js",
       "type": "polling",
-      "title": "Fetch new and updated objects (getObjects - Polling)",
+      "title": "Fetch new and updated objects by delta link (getObjects - Polling)",
       "description": "Get objects which have recently been modified or created",
       "fields": {
         "objectType": {
@@ -28,6 +28,38 @@
           "viewClass": "SelectView",
           "model": "getObjects",
           "prompt": "Select an object"
+        }
+      },
+      "metadata": {
+        "out": {}
+      }
+    },
+    "getObjectsPollingByTimestamp": {
+      "main": "./lib/triggers/getObjectsPollingByTimestamp.js",
+      "type": "polling",
+      "title": "Fetch new and updated objects by timestamp (getObjects - Polling)",
+      "description": "Get objects which have recently been modified or created",
+      "fields": {
+        "objectType": {
+          "label": "Object type to fetch",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getObjects",
+          "prompt": "Select an object"
+        },
+        "timestampField": {
+          "label": "Timestamp Field",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getTimestampFields",
+          "prompt": "Select a field"
+        },
+        "timezone": {
+          "label": "Server Timezone",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": "getTimezones",
+          "prompt": "Select a timezone"
         }
       },
       "metadata": {
