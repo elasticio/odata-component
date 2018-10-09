@@ -65,6 +65,11 @@
           "viewClass": "SelectView",
           "model": "getTimestampFields",
           "prompt": "Select a field"
+        },
+        "pollingStartTime": {
+          "label": "Polling Start Time",
+          "required": false,
+          "viewClass": "TextFieldView"
         }
       },
       "metadata": {
