@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable camelcase */
 /* eslint-disable node/no-unpublished-require */
-'use strict';
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+
 chai.use(chaiAsPromised);
-const {expect} = chai;
+const { expect } = chai;
 const fs = require('fs');
 const sinon = require('sinon');
 
@@ -16,7 +16,7 @@ const getObjectsPolling = require('../lib/triggers/getObjectsPolling');
 const verifyCredentials = require('../verifyCredentials');
 
 function randomString() {
-  return  Math.random().toString(36).substring(2, 15);
+  return Math.random().toString(36).substring(2, 15);
 }
 
 describe('Integration Test', function () {
@@ -26,34 +26,35 @@ describe('Integration Test', function () {
 
   this.timeout(30000);
 
-  before(function () {
+  before(() => {
     if (fs.existsSync('.env')) {
+      // eslint-disable-next-line global-require
       require('dotenv').config();
     }
 
     resourceServerUrl = process.env.TRIPPIN_RESOURCE_SERVER_URL;
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     cfg = {
       resourceServerUrl,
       auth: {
-        type: 'No Auth'
-      }
+        type: 'No Auth',
+      },
     };
 
     emitter = {
-      emit: sinon.spy()
+      emit: sinon.spy(),
     };
   });
 
-  describe('Trigger Tests', function () {
-    it('GetObjectsPolling', async function () {
+  describe('Trigger Tests', () => {
+    it('GetObjectsPolling', async () => {
       cfg.objectType = 'People';
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
       expect(testCall).to.be.rejectedWith(Error, 'No delta link provided.  Unable to record snapshot.');
-      try{
+      try {
         await testCall;
         // eslint-disable-next-line no-empty
       } catch (e) {}
@@ -63,9 +64,9 @@ describe('Integration Test', function () {
     });
   });
 
-  describe('List Objects Tests', function () {
-    [upsertObject, getObjectsPolling, lookupObject].forEach(function (triggerOrAction) {
-      it('List Objects', async function () {
+  describe('List Objects Tests', () => {
+    [upsertObject, getObjectsPolling, lookupObject].forEach((triggerOrAction) => {
+      it('List Objects', async () => {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
         expect(objects).to.include('People');
@@ -73,8 +74,8 @@ describe('Integration Test', function () {
     });
   });
 
-  describe('Metadata Tests', function () {
-    it('Build In Metadata', async function () {
+  describe('Metadata Tests', () => {
+    it('Build In Metadata', async () => {
       cfg.objectType = 'People';
       const metadata = await upsertObject.getMetaModel(cfg);
 
@@ -82,40 +83,40 @@ describe('Integration Test', function () {
       expect(metadata.in.type).to.equal('object');
       expect(metadata.in.required).to.be.true;
 
-      const properties = metadata.in.properties;
+      const { properties } = metadata.in;
 
       expect(properties.UserName).to.deep.include({
         type: 'string',
         required: false,
-        title: 'UserName (Primary Key)'
+        title: 'UserName (Primary Key)',
       });
       expect(properties.FirstName).to.deep.include({
         type: 'string',
         required: true,
-        title: 'FirstName'
+        title: 'FirstName',
       });
 
       // A full set of assertions are in the unit tests
     });
   });
 
-  describe('Verify Credential Tests', function () {
-    it('Success Case', async function () {
+  describe('Verify Credential Tests', () => {
+    it('Success Case', async () => {
       const result = await verifyCredentials(cfg);
       expect(result).to.be.true;
     });
   });
 
-  describe('Action Tests', function () {
-    xit('Upsert - Insert', async function () {
+  describe('Action Tests', () => {
+    xit('Upsert - Insert', async () => {
       cfg.objectType = 'People';
       const msg = {
         body: {
           FirstName: 'Jacob',
           MiddleName: 'One',
           LastName: 'Test',
-          UserName: randomString()
-        }
+          UserName: randomString(),
+        },
       };
 
       await upsertObject.process.call(emitter, msg, cfg, {});
@@ -126,16 +127,16 @@ describe('Integration Test', function () {
       expect(result.body.MiddleName).to.be.equal('One');
     });
 
-    xit('Upsert - Update', async function () {
+    xit('Upsert - Update', async () => {
       cfg.objectType = 'People';
-      const newMiddleName =  randomString();
+      const newMiddleName = randomString();
       const msg = {
         body: {
           FirstName: 'Scott',
           MiddleName: newMiddleName,
           LastName: 'Ketchum',
-          UserName: 'scottketchum'
-        }
+          UserName: 'scottketchum',
+        },
       };
       await upsertObject.process.call(emitter, msg, cfg, {});
 
@@ -145,8 +146,8 @@ describe('Integration Test', function () {
       expect(result.body.MiddleName).to.be.equal(newMiddleName);
     });
 
-    describe('Lookup Object Tests', function () {
-      it('Success Lookup String', async function () {
+    describe('Lookup Object Tests', () => {
+      it('Success Lookup String', async () => {
         cfg.objectType = 'People';
         cfg.fieldName = 'UserName';
         cfg.allowEmptyCriteria = '1';
@@ -156,8 +157,8 @@ describe('Integration Test', function () {
 
         const msg = {
           body: {
-            UserName: personUserName
-          }
+            UserName: personUserName,
+          },
         };
 
         await lookupObject.process.call(emitter, msg, cfg);

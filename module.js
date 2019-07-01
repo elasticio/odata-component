@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable global-require */
 
 const statelessAuthenticationRestClients = require('./lib/commons/authentication/statelessAuthenticationRestClients');
 
@@ -7,12 +7,12 @@ module.exports = {
     OAuthAuthorizationCodeRestClient: require('./lib/commons/authentication/OAuthAuthorizationCodeRestClient'),
     NoAuthRestClient: statelessAuthenticationRestClients.NoAuthRestClient,
     BasicAuthRestClient: statelessAuthenticationRestClients.BasicAuthRestClient,
-    ApiKeyRestClient: statelessAuthenticationRestClients.ApiKeyRestClient
+    ApiKeyRestClient: statelessAuthenticationRestClients.ApiKeyRestClient,
   },
   OData: {
-    ODataClient: require('./lib/commons/odata/ODataClient')
+    ODataClient: require('./lib/commons/odata/ODataClient'),
   },
   JsonSchema: {
-    convertJsonSchemaToEioSchema: require('./lib/commons/jsonSchema/jsonSchemaConversionUtil').convertJsonSchemaToEioSchema
-  }
+    convertJsonSchemaToEioSchema: require('./lib/commons/jsonSchema/jsonSchemaConversionUtil').convertJsonSchemaToEioSchema,
+  },
 };
