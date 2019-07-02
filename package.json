@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "pretest": "eslint verifyCredentials.js module.js lib spec spec-integration --fix",
+    "pretest": "eslint verifyCredentials.js lib spec spec-integration --fix",
     "test": "mocha spec",
     "integration-test": "mocha spec-integration"
   },
