@@ -274,10 +274,10 @@ describe('OData Client Test Cases ', () => {
     });
 
     describe('upsertObjectById ', () => {
-      it('no snapshot with string type ', async () => {
+      it('no snapshot with string type  no PID ', async () => {
         cfg.objectType = 'Categories';
         const msg = { body: { ID: 1, Name: 'BBeverages' } };
-        const response = { value: [{ ID: 1, Name: msg.body.Name }] };
+        const response = { result: 'OK' };
 
         nock(cfg.resourceServerUrl)
           .get('/$metadata')
@@ -289,6 +289,64 @@ describe('OData Client Test Cases ', () => {
 
         const oDataClient = new ODataClient(emitter, cfg, restClient);
         await oDataClient.upsertObjectById(msg, {});
+
+        const expectedSnapshot = {
+          keys: [
+            {
+              required: true,
+              name: 'ID',
+              wrapValueInQuotesInUrls: false,
+              type: 'Edm.Int32',
+            },
+          ],
+          operationType: 'upsert',
+          objectType: 'Categories',
+          version: 1,
+        };
+
+        expect(emitter.emit.getCall(0).args[0]).to.equal('snapshot');
+        expect(emitter.emit.getCall(0).args[1]).to.deep.equal(expectedSnapshot);
+
+        const expectedBody = JSON.parse(JSON.stringify(response));
+        expectedBody.isNew = false;
+        expect(emitter.emit.getCall(1).args[0]).to.equal('data');
+        expect(emitter.emit.getCall(1).args[1].body).to.deep.equal(expectedBody);
+      });
+
+      it('with snapshot with string type no PID ', async () => {
+        cfg.objectType = 'Categories';
+        const msg = { body: { ID: 1, Name: 'BBeverages' } };
+        const response = { result: 'OK' };
+
+        const snapshot = {
+          keys: [
+            {
+              required: true,
+              name: 'ID',
+              wrapValueInQuotesInUrls: false,
+              type: 'Edm.Int32',
+            },
+          ],
+          operationType: 'upsert',
+          objectType: 'Categories',
+          version: 1,
+        };
+
+        nock(cfg.resourceServerUrl)
+          .get('/$metadata')
+          .reply(200, fs.readFileSync('spec/odata/samples/odataMetadataResponse.xml'));
+
+        nock('http://example.com')
+          .patch('/Categories(1)', { Name: msg.body.Name })
+          .reply(200, response);
+
+        const oDataClient = new ODataClient(emitter, cfg, restClient);
+        await oDataClient.upsertObjectById(msg, snapshot);
+
+        const expectedBody = JSON.parse(JSON.stringify(response));
+        expectedBody.isNew = false;
+        expect(emitter.emit.getCall(0).args[0]).to.equal('data');
+        expect(emitter.emit.getCall(0).args[1].body).to.deep.equal(expectedBody);
       });
     });
   });

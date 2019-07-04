@@ -63,7 +63,7 @@ describe('Integration Test', function () {
   });
 
   describe('Trigger Tests', () => {
-    it('GetObjectsPolling', async () => {
+    xit('GetObjectsPolling', async () => {
       cfg.objectType = objectType;
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
@@ -77,7 +77,7 @@ describe('Integration Test', function () {
 
   describe('List Objects Tests', () => {
     [upsertObject, getObjectsPolling, lookupObject].forEach((triggerOrAction) => {
-      it('List Objects', async () => {
+      xit('List Objects', async () => {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
         expect(objects).to.include(objectType);
@@ -86,7 +86,7 @@ describe('Integration Test', function () {
   });
 
   describe('Metadata Tests', () => {
-    it('Build In Metadata', async () => {
+    xit('Build In Metadata', async () => {
       cfg.objectType = objectType;
       const metadata = await upsertObject.getMetaModel(cfg);
 
@@ -103,14 +103,14 @@ describe('Integration Test', function () {
   });
 
   describe('Verify Credential Tests', () => {
-    it('Success Case', async () => {
+    xit('Success Case', async () => {
       const result = await verifyCredentials(cfg);
       expect(result).to.be.true;
     });
   });
 
   describe('Action Tests', () => {
-    it('Upsert - Insert, Update and Lookup', async () => {
+    xit('Upsert - Insert, Update and Lookup', async () => {
       cfg.objectType = objectType;
       const insertFieldValue = `Automated Test ${randomString()}`;
       const insertMsg = {
@@ -150,7 +150,7 @@ describe('Integration Test', function () {
     });
 
     describe('Lookup Object Tests', () => {
-      it('Success Lookup String', async () => {
+      xit('Success Lookup String', async () => {
         cfg.objectType = objectType;
         cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '1';
@@ -172,7 +172,7 @@ describe('Integration Test', function () {
         expect(result.body.No).to.be.equal(expectedId);
       });
 
-      it('Lookup Empty Allowed', async () => {
+      xit('Lookup Empty Allowed', async () => {
         cfg.objectType = objectType;
         cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '1';
@@ -190,7 +190,7 @@ describe('Integration Test', function () {
         expect(result.body).to.deep.equal({});
       });
 
-      it('Lookup Empty Not Allowed', async () => {
+      xit('Lookup Empty Not Allowed', async () => {
         cfg.objectType = objectType;
         cfg.fieldName = lookupFieldValue;
         cfg.allowEmptyCriteria = '0';
