@@ -1,0 +1,17 @@
+{
+  "odata.metadata": "https://services.odata.org/V3/OData/OData.svc/$metadata#Categories",
+  "value": [
+    {
+      "ID": 0,
+      "Name": "Food"
+    },
+    {
+      "ID": 1,
+      "Name": "Beverages"
+    },
+    {
+      "ID": 2,
+      "Name": "Electronics"
+    }
+  ]
+}

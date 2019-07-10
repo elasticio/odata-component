@@ -1,0 +1,36 @@
+{
+  "in": {
+    "properties": {
+      "ID": {
+        "format": "int32",
+        "required": false,
+        "title": "ID (Primary Key)",
+        "type": "number"
+      },
+      "Name": {
+        "required": false,
+        "title": "Name",
+        "type": "string"
+      }
+    },
+    "required": true,
+    "type": "object"
+  },
+  "out": {
+    "properties": {
+      "ID": {
+        "format": "int32",
+        "required": false,
+        "title": "ID (Primary Key)",
+        "type": "number"
+      },
+      "Name": {
+        "required": false,
+        "title": "Name",
+        "type": "string"
+      }
+    },
+    "required": true,
+    "type": "object"
+  }
+}

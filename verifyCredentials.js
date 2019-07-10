@@ -1,3 +1,9 @@
-'use strict';
+const GenericODataClient = require('./lib/genericODataClient');
 
-module.exports = require('./lib/commons/odata/ODataClient').verifyCredentialsFactory(require('./lib/genericODataClient'));
+async function verify(credentials) {
+  // for now sailor hasn't opportunity emit something from verify credentials context
+  const genericODataClient = GenericODataClient.create({}, credentials);
+  return genericODataClient.verifyCredentials();
+}
+
+module.exports = verify;
