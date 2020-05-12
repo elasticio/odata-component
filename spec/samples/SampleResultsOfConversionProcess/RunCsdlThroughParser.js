@@ -1,5 +1,4 @@
-
-
+/* eslint-disable no-console */
 const fs = require('fs');
 const { parse, convert } = require('odata2openapi');
 

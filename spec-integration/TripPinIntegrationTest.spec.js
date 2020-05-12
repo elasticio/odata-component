@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable camelcase */
-/* eslint-disable node/no-unpublished-require */
+/* eslint-disable no-unused-expressions,camelcase,node/no-unpublished-require,func-names */
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -9,6 +7,7 @@ chai.use(chaiAsPromised);
 const { expect } = chai;
 const fs = require('fs');
 const sinon = require('sinon');
+const logger = require('@elastic.io/component-logger')();
 
 const upsertObject = require('../lib/actions/upsertObject');
 const lookupObject = require('../lib/actions/lookupObjectByFields');
@@ -45,6 +44,7 @@ describe('Integration Test', function () {
 
     emitter = {
       emit: sinon.spy(),
+      logger,
     };
   });
 
