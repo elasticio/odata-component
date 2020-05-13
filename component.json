@@ -20,7 +20,10 @@
       "main": "./lib/triggers/getObjectsPolling.js",
       "type": "polling",
       "title": "Fetch new and updated objects (getObjects - Polling)",
-      "description": "Get objects which have recently been modified or created",
+      "help": {
+        "description": "Get objects which have recently been modified or created",
+        "link": "/components/odata/index.html#get-objects-polling"
+      },
       "fields": {
         "objectType": {
           "label": "Object type to fetch",
@@ -39,7 +42,10 @@
     "upsertObject": {
       "main": "./lib/actions/upsertObject.js",
       "title": "Upsert Object By ID",
-      "description": "Update an existing entry with the id provided.  Otherwise create a new entry.",
+      "help": {
+        "description": "Update an existing entry with the id provided. Otherwise create a new entry.",
+        "link": "/components/odata/index.html#upsert-object-by-id"
+      },
       "dynamicMetadata": true,
       "fields": {
         "objectType": {
@@ -54,7 +60,10 @@
     "lookupObjectByFields": {
       "main": "./lib/actions/lookupObjectByFields.js",
       "title": "Lookup Object By Field",
-      "description": "Given a field and a field value that matches exactly one record, find that matching record.",
+      "help": {
+        "description": "Given a field and a field value that matches exactly one record, find that matching record.",
+        "link": "/components/odata/index.html#lookup-object-by-field"
+      },
       "fields": {
         "objectType": {
           "label": "Object Type to Lookup",
