@@ -18,7 +18,7 @@
     "integration-test": "mocha spec-integration"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=12.13.0"
   },
   "keywords": [
     "OData",
