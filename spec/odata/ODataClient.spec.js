@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const fs = require('fs');
 const nock = require('nock');
 const sinon = require('sinon');
+const logger = require('@elastic.io/component-logger')();
 
 const { NoAuthRestClient } = require('@elastic.io/odata-library');
 
@@ -16,6 +17,7 @@ describe('OData Client Test Cases ', () => {
     beforeEach(() => {
       emitter = {
         emit: sinon.spy(),
+        logger,
       };
 
       cfg = {
