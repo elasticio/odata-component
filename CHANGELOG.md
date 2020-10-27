@@ -2,7 +2,7 @@
 
 * Update Sailor version to 2.6.18
 
-## 3.0.1 (May 12, 2020)
+## 3.0.1 (May 22, 2020)
 
 * Update Sailor version to 2.6.7
 
