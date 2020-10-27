@@ -98,7 +98,7 @@ describe('Integration Test', () => {
 
   describe('Verify Credential Tests', () => {
     it('Success Case', async () => {
-      const result = await verifyCredentials(cfg);
+      const result = await verifyCredentials.call({ logger }, cfg);
       expect(result).to.equal(true);
     });
   });
