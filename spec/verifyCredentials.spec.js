@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-expressions */
-
+const logger = require('@elastic.io/component-logger')();
 const chai = require('chai');
 const { expect } = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -25,8 +24,8 @@ describe('Verify Credentials', () => {
       .get('/')
       .reply(200, { result: 'OK' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.true;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(true);
   });
 
   it(' unsuccessfully for No Auth', async () => {
@@ -44,8 +43,8 @@ describe('Verify Credentials', () => {
       .get('/')
       .reply(400, { result: 'ERROR' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.false;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(false);
   });
 
   it(' successfully for Basic Auth', async () => {
@@ -66,8 +65,8 @@ describe('Verify Credentials', () => {
     }).get('/')
       .reply(200, { result: 'OK' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.true;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(true);
   });
 
   it(' unsuccessfully for Basic Auth', async () => {
@@ -85,8 +84,8 @@ describe('Verify Credentials', () => {
       .get('/')
       .reply(400, { result: 'ERROR' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.false;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(false);
   });
 
   it(' successfully for API Key Auth', async () => {
@@ -107,8 +106,8 @@ describe('Verify Credentials', () => {
     }).get('/')
       .reply(200, { result: 'OK' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.true;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(true);
   });
 
   it(' successfully for API Key Auth', async () => {
@@ -126,7 +125,7 @@ describe('Verify Credentials', () => {
       .get('/')
       .reply(400, { result: 'ERROR' });
 
-    const result = await verify(configuration);
-    expect(result).to.be.false;
+    const result = await verify.call({ logger }, configuration);
+    expect(result).to.equal(false);
   });
 });
