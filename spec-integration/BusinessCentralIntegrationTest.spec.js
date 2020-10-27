@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions,camelcase,node/no-unpublished-require,func-names */
-
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
@@ -18,7 +16,7 @@ function randomString() {
   return Math.random().toString(36).substring(2, 15);
 }
 
-describe('Integration Test', function () {
+describe('Integration Test', () => {
   let resourceServerUrl;
   let username;
   let password;
@@ -27,8 +25,6 @@ describe('Integration Test', function () {
   let objectType;
   let lookupFieldValue;
   let upsertKey;
-
-  this.timeout(30000);
 
   before(() => {
     if (fs.existsSync('.env')) {
@@ -92,11 +88,11 @@ describe('Integration Test', function () {
 
       expect(metadata.in).to.deep.equal(metadata.out);
       expect(metadata.in.type).to.equal('object');
-      expect(metadata.in.required).to.be.true;
+      expect(metadata.in.required).to.equal(true);
 
       const { properties } = metadata.in;
 
-      expect(properties[upsertKey].required).to.be.false;
+      expect(properties[upsertKey].required).to.equal(false);
 
       // A full set of assertions are in the unit tests
     });
@@ -105,7 +101,7 @@ describe('Integration Test', function () {
   describe('Verify Credential Tests', () => {
     xit('Success Case', async () => {
       const result = await verifyCredentials(cfg);
-      expect(result).to.be.true;
+      expect(result).to.equal(true);
     });
   });
 

@@ -4,7 +4,7 @@ const { getJsonSchemaForEntitySet } = require('../lib/commons/odata/extractCsdl'
 
 describe('OData Parsing Test Cases', () => {
   it('TripPin Person Schema', async () => {
-    const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/TripPinMetadata.xml').toString();
+    const csdlString = fs.readFileSync('./samples/rawCsdlFiles/TripPinMetadata.xml').toString();
 
     const convertedResults = await getJsonSchemaForEntitySet(csdlString, 'People');
     const { properties } = convertedResults;
@@ -71,7 +71,7 @@ describe('OData Parsing Test Cases', () => {
   });
 
   it('MS Business Central Contact Schema', async () => {
-    const csdlString = fs.readFileSync('./spec/samples/rawCsdlFiles/MsBusinessCentralWithCustomerCardService.xml').toString();
+    const csdlString = fs.readFileSync('./samples/rawCsdlFiles/MsBusinessCentralWithCustomerCardService.xml').toString();
 
     const convertedResults = await getJsonSchemaForEntitySet(csdlString, 'CustomerCardService');
     const { properties } = convertedResults;

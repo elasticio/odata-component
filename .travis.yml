@@ -1,7 +1,0 @@
-language: node_js
-node_js:
-  - 8
-script: npm test && npm run integration-test
-notifications:
-    email:
-        - ps@elastic.io
