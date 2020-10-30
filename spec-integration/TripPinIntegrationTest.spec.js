@@ -45,7 +45,7 @@ describe('Integration Test', () => {
   });
 
   describe('Trigger Tests', () => {
-    it('GetObjectsPolling', async () => {
+    xit('GetObjectsPolling', async () => {
       cfg.objectType = 'People';
 
       const testCall = getObjectsPolling.process.call(emitter, {}, cfg);
@@ -62,7 +62,7 @@ describe('Integration Test', () => {
 
   describe('List Objects Tests', () => {
     [upsertObject, getObjectsPolling, lookupObject].forEach((triggerOrAction) => {
-      it('List Objects', async () => {
+      xit('List Objects', async () => {
         const result = await triggerOrAction.getObjects(cfg);
         const objects = Object.keys(result);
         expect(objects).to.include('People');
@@ -71,7 +71,7 @@ describe('Integration Test', () => {
   });
 
   describe('Metadata Tests', () => {
-    it('Build In Metadata', async () => {
+    xit('Build In Metadata', async () => {
       cfg.objectType = 'People';
       const metadata = await upsertObject.getMetaModel(cfg);
 
@@ -97,7 +97,7 @@ describe('Integration Test', () => {
   });
 
   describe('Verify Credential Tests', () => {
-    it('Success Case', async () => {
+    xit('Success Case', async () => {
       const result = await verifyCredentials.call({ logger }, cfg);
       expect(result).to.equal(true);
     });
@@ -143,7 +143,7 @@ describe('Integration Test', () => {
     });
 
     describe('Lookup Object Tests', () => {
-      it('Success Lookup String', async () => {
+      xit('Success Lookup String', async () => {
         cfg.objectType = 'People';
         cfg.fieldName = 'UserName';
         cfg.allowEmptyCriteria = '1';

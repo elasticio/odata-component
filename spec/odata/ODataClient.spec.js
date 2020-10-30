@@ -42,7 +42,7 @@ describe('OData Client Test Cases ', () => {
         await oDataClient.getObjectsPolling({});
 
         expect(emitter.emit.getCalls().length).to.equal(4);
-        expect(emitter.emit.getCalls().filter((call) => call.args[0] === 'data').length).to.equal(3);
+        expect(emitter.emit.getCalls().filter(call => call.args[0] === 'data').length).to.equal(3);
 
         expect(emitter.emit.getCall(0).args[1].body).to.deep.equal(response.value[0]);
 
@@ -68,7 +68,7 @@ describe('OData Client Test Cases ', () => {
         await oDataClient.getObjectsPolling({ deltaLink });
 
         expect(emitter.emit.getCalls().length).to.equal(4);
-        expect(emitter.emit.getCalls().filter((call) => call.args[0] === 'data').length).to.equal(3);
+        expect(emitter.emit.getCalls().filter(call => call.args[0] === 'data').length).to.equal(3);
 
         expect(emitter.emit.getCall(0).args[1].body).to.deep.equal(response.value[0]);
 
