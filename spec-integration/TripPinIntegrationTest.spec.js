@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions,camelcase,node/no-unpublished-require,func-names */
-
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
@@ -18,12 +16,10 @@ function randomString() {
   return Math.random().toString(36).substring(2, 15);
 }
 
-describe('Integration Test', function () {
+describe('Integration Test', () => {
   let resourceServerUrl;
   let cfg;
   let emitter;
-
-  this.timeout(30000);
 
   before(() => {
     if (fs.existsSync('.env')) {
@@ -81,7 +77,7 @@ describe('Integration Test', function () {
 
       expect(metadata.in).to.deep.equal(metadata.out);
       expect(metadata.in.type).to.equal('object');
-      expect(metadata.in.required).to.be.true;
+      expect(metadata.in.required).to.equal(true);
 
       const { properties } = metadata.in;
 
@@ -102,8 +98,8 @@ describe('Integration Test', function () {
 
   describe('Verify Credential Tests', () => {
     it('Success Case', async () => {
-      const result = await verifyCredentials(cfg);
-      expect(result).to.be.true;
+      const result = await verifyCredentials.call({ logger }, cfg);
+      expect(result).to.equal(true);
     });
   });
 
@@ -123,7 +119,7 @@ describe('Integration Test', function () {
 
       expect(emitter.emit.withArgs('data').callCount).to.be.equal(1);
       const result = emitter.emit.withArgs('data').getCall(0).args[1];
-      expect(result.body.UserName).to.not.be.null;
+      expect(result.body.UserName).to.not.equal(null);
       expect(result.body.MiddleName).to.be.equal('One');
     });
 
