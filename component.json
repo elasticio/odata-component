@@ -2,6 +2,7 @@
   "title": "OData",
   "buildType": "docker",
   "description": "A component designed to work with OData services.",
+  "version": "3.0.3",
   "credentials": {
     "fields": {
       "auth": {

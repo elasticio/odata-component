@@ -1,6 +1,5 @@
 {
   "name": "odata-component",
-  "version": "3.0.2",
   "description": "A component designed to work with generic OData services.",
   "homepage": "https://elastic.io",
   "author": {
